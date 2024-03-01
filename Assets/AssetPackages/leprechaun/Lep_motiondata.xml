@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Anim>
+ <Data id="1" name="Lep_snoring" startFrame="0f" endFrame="270f" />
+ <Data id="2" name="Lep_Waking_up" startFrame="271f" endFrame="371f" />
+ <Data id="3" name="Lep_anger_A" startFrame="372f" endFrame="422f" />
+ <Data id="4" name="Lep_Digging" startFrame="423f" endFrame="468f" />
+ <Data id="5" name="Lep_Drinking" startFrame="469f" endFrame="569f" />
+ <Data id="6" name="lep_Eating" startFrame="570f" endFrame="690f" />
+ <Data id="7" name="Lep_Ecstatic" startFrame="691f" endFrame="766f" />
+ <Data id="8" name="Lep_Hit_from_front" startFrame="767f" endFrame="802f" />
+ <Data id="9" name="Lep_Hurray" startFrame="803f" endFrame="848f" />
+ <Data id="10" name="Lep_Kiss" startFrame="849f" endFrame="934f" />
+ <Data id="11" name="Lep_looking_around" startFrame="935f" endFrame="1055f" />
+ <Data id="12" name="Lep_Pointing_A_01" startFrame="1056f" endFrame="1116f" />
+ <Data id="13" name="Lep_Reject" startFrame="1117f" endFrame="1217f" />
+ <Data id="14" name="Lep_Say_No" startFrame="1218f" endFrame="1268f" />
+ <Data id="15" name="Lep_speaking_A" startFrame="1269f" endFrame="1329f" />
+ <Data id="16" name="Lep_Standing_B" startFrame="1330f" endFrame="1490f" />
+ <Data id="17" name="Lep_Stretching" startFrame="1491f" endFrame="1591f" />
+ <Data id="18" name="Lep_speaking_B" startFrame="1592f" endFrame="1637f" />
+ <Data id="19" name="Lep_thinking" startFrame="1638f" endFrame="1713f" />
+ <Data id="20" name="Lep_Throwing" startFrame="1714f" endFrame="1864f" />
+ <Data id="21" name="Lep_tracking" startFrame="1865f" endFrame="2040f" />
+ <Data id="22" name="Lep_waiting" startFrame="2041f" endFrame="2191f" />
+ <Data id="23" name="Lep_Waving_A" startFrame="2192f" endFrame="2252f" />
+ <Data id="24" name="Lep_waving_B" startFrame="2253f" endFrame="2313f" />
+ <Data id="25" name="Lep_waving_C" startFrame="2314f" endFrame="2359f" />
+ <Data id="26" name="Lep_yawn" startFrame="2360f" endFrame="2445f" />
+ <Data id="27" name="Lep_Going_asleep_01" startFrame="2446f" endFrame="2546f" />
+ <Data id="28" name="Lep_Jump_standing" startFrame="2551f" endFrame="2626f" />
+ <Data id="29" name="Lep_Moving_left" startFrame="2631f" endFrame="2651f" />
+ <Data id="30" name="Lep_Moving_right" startFrame="2652f" endFrame="2672f" />
+ <Data id="31" name="Lep_run" startFrame="2677f" endFrame="2699f" />
+ <Data id="32" name="Lep_Jump_runing" startFrame="2700f" endFrame="2740f" />
+ <Data id="33" name="Lep_Sneaking" startFrame="2745f" endFrame="2795f" />
+ <Data id="34" name="Lep_walk" startFrame="2800f" endFrame="2835f" />
+ <Data id="35" name="Lep_Climbing_ladder" startFrame="2840f" endFrame="2870f" />
+ <Data id="36" name="Lep_daying" startFrame="2875f" endFrame="2940f" />
+</Anim>

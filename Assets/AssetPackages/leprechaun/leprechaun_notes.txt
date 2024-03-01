@@ -1,0 +1,64 @@
+Animated Leprechaun
+
+Low polygonal game ready animated model of leprechaun
+Character can be imported and used with Unity 4 Mechanim.
+
+I used Character Studio 3D MAX to make animations.
+
+Character has 36 animations.
+
+Here you can find  animations preview: http://www.youtube.com/watch?v=KUEzasqTUzo
+
+Animation list:
+
+1) Lep_snoring: 0 - 270 fr.,
+ 2) Lep_Waking_up: 271 - 371 fr.,
+ 3) Lep_anger_A: 372 - 422 fr.,
+ 4) Lep_Digging: 423 - 468 fr.,
+ 5) Lep_Drinking: 469 - 569 fr.,
+ 6) lep_Eating: 570 - 690 fr.,
+ 7) Lep_Ecstatic: 691 - 766 fr.,
+ 8) Lep_Hit_from_front: 767 - 802 fr.,
+ 9) Lep_Hurray: 803 - 848 fr.,
+ 10) Lep_Kiss: 849 - 934 fr.,
+ 11) Lep_looking_around: 935 - 1055 fr.,
+ 12) Lep_Pointing_A_01: 1056 - 1116 fr.,
+ 13) Lep_Reject: 1117 - 1217 fr.,
+ 14) Lep_Say_No: 1218 - 1268 fr.,
+ 15) Lep_speaking_A: 1269 - 1329 fr.,
+ 16) Lep_Standing_B: 1330 - 1490 fr.,
+ 17) Lep_Stretching: 1491 - 1591 fr.,
+ 18) Lep_speaking_B: 1592 - 1637 fr.,
+ 19) Lep_thinking: 1638 - 1713 fr.,
+ 20) Lep_Throwing: 1714 - 1864 fr.,
+ 21) Lep_tracking: 1865 - 2040 fr.,
+ 22) Lep_waiting: 2041 - 2191 fr.,
+ 23) Lep_Waving_A: 2192 - 2252 fr.,
+ 24) Lep_waving_B: 2253 - 2313 fr.,
+ 25) Lep_waving_C: 2314 - 2359 fr.,
+ 26) Lep_yawn: 2360 - 2445 fr.,
+ 27) Lep_Going_asleep_01: 2446 - 2546 fr.,
+ 28) Lep_Jump_standing: 2551 - 2626 fr.,
+ 29) Lep_Moving_left: 2631 - 2651 fr.,
+ 30) Lep_Moving_right: 2652 - 2672 fr.,
+ 31) Lep_run: 2677 - 2699 fr.,
+ 32) Lep_Jump_runing: 2700 - 2740 fr.,
+ 33) Lep_Sneaking: 2745 - 2795 fr.,
+ 34) Lep_walk: 2800 - 2835 fr.,
+ 35) Lep_Climbing_ladder: 2840 - 2870 fr.,
+ 36) Lep_daying: 2875 - 2940 fr.,
+
+
+
+
+Leprechaun model has 1,286 polygons 2,408 triangles and 1,305 vertexes. 
+
+
+Textures: diffuse and opacity maps. 
+Textures are TIF file format 2048x2048 px.
+
+If you have questions, please mail me: mr.necturus@gmail.com
+
+
+character, fantasy, leprechaun, man, polygonal, video game, wow, rpg, mmo,  fps,  medieval, monster
+
