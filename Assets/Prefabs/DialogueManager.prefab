@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6441876629888754239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5032392171934564232}
+  - component: {fileID: 7689500564221847158}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5032392171934564232
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441876629888754239}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7689500564221847158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441876629888754239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c0cd8e8dce94cbfb2864d6dcdbfbf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneDialoguesList:
+  - sceneName: Start
+    dialogues:
+    - text: Ah, what have we here? I haven't seen a human in ages!
+      audioClip: {fileID: 8300000, guid: 4d1454d1b6e60e542b9e1720bc0f5bc6, type: 3}
+      choices: []
+      nextDialogueKey: 
+    - text: I suppose that is to be expected as I live deep in the forest and do
+        nothing but make shoes.
+      audioClip: {fileID: 8300000, guid: b034199f6b65a2e4bb8a2acd2ca82460, type: 3}
+      choices: []
+      nextDialogueKey: 
+    - text: Let's get a good look at you.
+      audioClip: {fileID: 8300000, guid: 9563277431c9a564b8f63f0eb75ef41b, type: 3}
+      choices: []
+      nextDialogueKey: 
+    - text: You're very big and very ugly. Definatly human, but also quite small
+        for someone so big.
+      audioClip: {fileID: 8300000, guid: e6e01565fee651d42a83b4b965a99c0d, type: 3}
+      choices: []
+      nextDialogueKey: 
+    - text: If I had to guess. I would guess your name was
+      audioClip: {fileID: 8300000, guid: b71bfcd5548df1b4690f010f51d1c7c2, type: 3}
+      choices: []
+      nextDialogueKey: 
+    - text: Carl! You're Carl L. Roberts of <Address Here>. Is that about right?
+      audioClip: {fileID: 8300000, guid: d5ec029a1e7b23743bf80d4f32abf54b, type: 3}
+      choices:
+      - label: Yes
+        nextDialogueKey: Name Correct
+      - label: No
+        nextDialogueKey: Name Incorrect
+      nextDialogueKey: 
+  - sceneName: Rabbit
+    dialogues:
+    - text: Eeek! Who goes there?!
+      audioClip: {fileID: 8300000, guid: ed86f6113c2bb3541be841189c0732f3, type: 3}
+      choices: []
+      nextDialogueKey: 
+    - text: Hiya Carl! Wish I had time to chat but I have a nasty problem to deal
+        with.
+      audioClip: {fileID: 8300000, guid: ffca3a85eb037944a9b88b35065bec37, type: 3}
+      choices: []
+      nextDialogueKey: 
+    - text: It's these blasted snakes. They are crawling all over the walls. The
+        last one just about got one of my babes here.
+      audioClip: {fileID: 8300000, guid: f22819a0d3dfcba459ccf381b282279f, type: 3}
+      choices: []
+      nextDialogueKey: 
+  - sceneName: Name Correct
+    dialogues:
+    - text: ...
+      audioClip: {fileID: 8300000, guid: 1b5550895dea4ff4bb02cecc153db7e3, type: 3}
+      choices: []
+      nextDialogueKey: Rabbit
+  - sceneName: Name Incorrect
+    dialogues:
+    - text: ...
+      audioClip: {fileID: 8300000, guid: 09d1d794acca8144985afa2ad4824bff, type: 3}
+      choices: []
+      nextDialogueKey: Rabbit
