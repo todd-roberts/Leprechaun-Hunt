@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using System.Collections.Generic;
 using UnityEngine.XR.ARSubsystems;
+using System;
 
 public class CharacterSpawner : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class CharacterSpawner : MonoBehaviour
     private List<CharacterMapping> characterMappings;
 
     [SerializeField]
+    private float scanningRange = .5f;
+
+    [SerializeField]
     private float smoothingSpeed = 5f; // Speed for smoothing the position and rotation updates
 
     private readonly Dictionary<string, CharacterRig> characterRigInstances = new();
-    private readonly HashSet<string> initialTransformsSet = new();
 
     private void Awake()
     {
@@ -56,22 +59,23 @@ public class CharacterSpawner : MonoBehaviour
 
     private void HandleTrackedImage(ARTrackedImage trackedImage)
     {
-        if (characterRigInstances.TryGetValue(trackedImage.referenceImage.name, out CharacterRig characterRig))
+        CharacterRig characterRig = characterRigInstances[trackedImage.referenceImage.name];
+
+        if (!characterRig.gameObject.activeSelf)
         {
-            if (!characterRig.gameObject.activeSelf)
-            {
-                characterRig.transform.position = trackedImage.transform.position;
-                characterRig.transform.rotation = trackedImage.transform.rotation * Quaternion.Euler(-90, 0, 180);
+            characterRig.transform.position = trackedImage.transform.position;
+            characterRig.transform.rotation =
+                trackedImage.transform.rotation * Quaternion.Euler(-90, 0, 180);
+            if (ImageIsCloseToCamera(trackedImage)) {
                 characterRig.gameObject.SetActive(true);
-                initialTransformsSet.Add(trackedImage.referenceImage.name);
-            }
-            else if (initialTransformsSet.Contains(trackedImage.referenceImage.name))
-            {
-                // Smoothly interpolate position and rotation
-                characterRig.transform.position = Vector3.Lerp(characterRig.transform.position, trackedImage.transform.position, Time.deltaTime * smoothingSpeed);
-                characterRig.transform.rotation = Quaternion.Slerp(characterRig.transform.rotation, trackedImage.transform.rotation * Quaternion.Euler(-90, 0, 180), Time.deltaTime * smoothingSpeed);
             }
         }
+    }
+
+    private bool ImageIsCloseToCamera(ARTrackedImage trackedImage)
+    {
+        float distance = Vector3.Distance(trackedImage.transform.position, Camera.main.transform.position);
+        return distance <= scanningRange;
     }
 }
 
