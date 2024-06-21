@@ -10,9 +10,6 @@ public class CharacterRig : MonoBehaviour
     private GameObject _door;
 
     [SerializeField]
-    private GameObject _doorKnob;
-
-    [SerializeField]
     private AudioClip _doorOpenSound;
 
     [SerializeField]
@@ -112,7 +109,6 @@ public class CharacterRig : MonoBehaviour
     {
         _doorIsOpen = false;
         _door.transform.localRotation = Quaternion.identity;
-        _doorKnob.transform.localRotation = Quaternion.identity;
         _character.ResetPosition();
         _character.gameObject.SetActive(false);
         gameObject.SetActive(false);
@@ -129,13 +125,11 @@ public class CharacterRig : MonoBehaviour
         {
             Quaternion slerped = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime / doorOpenDuration);
             _door.transform.localRotation = slerped;
-            _doorKnob.transform.localRotation = slerped;
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         _door.transform.localRotation = targetRotation;
-        _doorKnob.transform.localRotation = targetRotation;
 
         _character.gameObject.SetActive(true);
         _character.Walk();

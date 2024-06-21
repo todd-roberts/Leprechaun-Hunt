@@ -153,7 +153,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b9163aec1a76bd24794cd22f317607d7, type: 2}
+      objectReference: {fileID: 2100000, guid: 4c577c226c9a1694c87afcaa1fe637d8, type: 2}
     - target: {fileID: -2604956742103313994, guid: da3dc78da4b0a66459e16606eb127779,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -163,7 +163,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0e3f6b5fb2c4947408fd79777ef48b82, type: 2}
+      objectReference: {fileID: -7031731440158164914, guid: da3dc78da4b0a66459e16606eb127779,
+        type: 3}
+    - target: {fileID: -305091885687274788, guid: da3dc78da4b0a66459e16606eb127779,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: d8df2aa78c75b8b4fa0d9dbe03862ef9, type: 2}
     - target: {fileID: 919132149155446097, guid: da3dc78da4b0a66459e16606eb127779,
         type: 3}
       propertyPath: m_Name
@@ -236,7 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _door: {fileID: 1110985176616600259}
-  _doorKnob: {fileID: 1724622616480040956}
   _doorOpenSound: {fileID: 8300000, guid: c6fca67ff59624e46886b35a543484a8, type: 3}
   _knockSound: {fileID: 8300000, guid: b49458a88a9dd52459627e93a983d909, type: 3}
   _character: {fileID: 2141213047285742165}
@@ -336,12 +341,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &1724622616480040956 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8607392776104831022, guid: da3dc78da4b0a66459e16606eb127779,
-    type: 3}
-  m_PrefabInstance: {fileID: 2261777873535225902}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1730854197418938923 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 533193074659131909, guid: da3dc78da4b0a66459e16606eb127779,
