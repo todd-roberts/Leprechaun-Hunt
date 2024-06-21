@@ -1,9 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.VFX;
 
 public class CharacterRig : MonoBehaviour
 {
+    private CharacterSpawner _characterSpawner;
+
     private AudioSource _audio;
 
     [SerializeField]
@@ -30,6 +33,7 @@ public class CharacterRig : MonoBehaviour
 
     protected virtual void Awake()
     {
+        _characterSpawner = FindObjectOfType<CharacterSpawner>();
         _audio = GetComponent<AudioSource>();
         _character.gameObject.SetActive(false);
         SetupOnClickHandler();
@@ -107,6 +111,7 @@ public class CharacterRig : MonoBehaviour
 
     private void Despawn()
     {
+        _characterSpawner.Poof(transform.position);
         _doorIsOpen = false;
         _door.transform.localRotation = Quaternion.identity;
         _character.ResetPosition();

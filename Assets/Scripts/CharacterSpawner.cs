@@ -3,6 +3,7 @@ using UnityEngine.XR.ARFoundation;
 using System.Collections.Generic;
 using UnityEngine.XR.ARSubsystems;
 using System;
+using UnityEngine.VFX;
 
 public class CharacterSpawner : MonoBehaviour
 {
@@ -19,10 +20,20 @@ public class CharacterSpawner : MonoBehaviour
 
     private readonly Dictionary<string, CharacterRig> characterRigInstances = new();
 
+    private AudioSource _audio;
+
+    [SerializeField]
+    private VisualEffect _poofVFX;
+
+    [SerializeField]
+    private AudioClip _poofSound;
+
     private void Awake()
     {
         _trackedImageManager = GetComponent<ARTrackedImageManager>();
+        _audio = GetComponent<AudioSource>();
         PopulateCharacterInstances();
+        _poofVFX.enabled = false;
     }
 
     private void PopulateCharacterInstances()
@@ -67,9 +78,17 @@ public class CharacterSpawner : MonoBehaviour
             characterRig.transform.rotation =
                 trackedImage.transform.rotation * Quaternion.Euler(-90, 0, 180);
             if (ImageIsCloseToCamera(trackedImage)) {
+                Poof(characterRig.transform.position);
                 characterRig.gameObject.SetActive(true);
             }
         }
+    }
+
+    public void Poof(Vector3 where) {
+        _poofVFX.enabled = true;
+        _poofVFX.transform.position = where;
+        _audio.PlayOneShot(_poofSound);
+        _poofVFX.Play();
     }
 
     private bool ImageIsCloseToCamera(ARTrackedImage trackedImage)

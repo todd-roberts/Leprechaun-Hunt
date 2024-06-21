@@ -11,12 +11,10 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     private float walkDuration = 2f; // Duration of the walk
 
-    private Vector3 _initialPosition;
-
     protected virtual void Awake()
     {
         _animator = GetComponent<Animator>();
-        _initialPosition = transform.localPosition;
+        ResetPosition();
         SetupOnClickHandler();
     }
 
@@ -46,7 +44,7 @@ public abstract class Character : MonoBehaviour
     {
         _animator.Play("Walk");
         Vector3 initialPosition = transform.position;
-        Vector3 targetPosition = initialPosition + transform.forward * walkDistance;
+        Vector3 targetPosition = transform.parent.position;
 
         float elapsedTime = 0f;
 
@@ -64,7 +62,7 @@ public abstract class Character : MonoBehaviour
 
     public void ResetPosition()
     {
-        transform.localPosition = _initialPosition;
+        transform.position = transform.parent.position - transform.forward * walkDistance;
     }
 
     public void OnPointerDown()
