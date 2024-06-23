@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Collections;
 
 public abstract class Character : MonoBehaviour
 {
+    protected CharacterStateMachine _stateMachine;
     protected Animator _animator;
 
     [SerializeField]
@@ -14,6 +14,8 @@ public abstract class Character : MonoBehaviour
     protected virtual void Awake()
     {
         _animator = GetComponent<Animator>();
+        _stateMachine = new CharacterStateMachine(this);
+
         ResetPosition();
         SetupOnClickHandler();
     }
@@ -35,29 +37,13 @@ public abstract class Character : MonoBehaviour
         eventTrigger.triggers.Add(pointerDownEntry);
     }
 
-    public void Walk()
-    {
-        StartCoroutine(WalkCoroutine());
+    void Update() {
+        _stateMachine.Update();
     }
 
-    private IEnumerator WalkCoroutine()
+    public void OnPointerDown()
     {
-        _animator.Play("Walk");
-        Vector3 initialPosition = transform.position;
-        Vector3 targetPosition = transform.parent.position;
-
-        float elapsedTime = 0f;
-
-        while (elapsedTime < walkDuration)
-        {
-            transform.position = Vector3.Lerp(initialPosition, targetPosition, elapsedTime / walkDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = targetPosition;
-
-        _animator.Play("Idle");
+        _stateMachine.OnPointerDown();
     }
 
     public void ResetPosition()
@@ -65,11 +51,14 @@ public abstract class Character : MonoBehaviour
         transform.position = transform.parent.position - transform.forward * walkDistance;
     }
 
-    public void OnPointerDown()
-    {
-        GameState currentState = GameManager.GetGameState();
-        ProcessGameState(currentState);
+    public void Walk() {
+        _stateMachine.SetState(new WalkingState());
     }
 
-    protected abstract void ProcessGameState(GameState gameState);
+    public float GetWalkDistance() => walkDistance;
+
+    public float GetWalkDuration() => walkDuration; 
+
+    public Animator GetAnimator() => _animator;
 }
+
