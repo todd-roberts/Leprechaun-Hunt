@@ -18,6 +18,7 @@ public class DialogueManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            HideUI();
         }
         else
         {
@@ -36,7 +37,7 @@ public class DialogueManager : MonoBehaviour
         _instance._currentCharacter = character;
         _instance._currentDialogueSet = character.GetDialogueSet();
 
-        if (_instance._currentDialogueSet != null && _instance._currentDialogueSet.HasMoreDialogues())
+        if (_instance._currentDialogueSet != null && _instance._currentDialogueSet.HasMoreDialogues(_instance._currentDialogueIndex))
         {
             ShowUI();
             _instance._dialogueCoroutine = _instance.PlayDialogue(_instance._currentDialogueIndex);
