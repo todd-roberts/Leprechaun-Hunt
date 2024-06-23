@@ -4,9 +4,13 @@ using UnityEngine;
 public class DialogueManager : MonoBehaviour
 {
     private static DialogueManager _instance;
+
+    [SerializeField]
     private DialogueUI _dialogueUI;
     private Character _currentCharacter;
     private DialogueSet _currentDialogueSet;
+    private IEnumerator _dialogueCoroutine;
+    private int _currentDialogueIndex;
 
     void Awake()
     {
@@ -14,7 +18,6 @@ public class DialogueManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
-            _dialogueUI = FindObjectOfType<DialogueUI>();
         }
         else
         {
@@ -35,8 +38,9 @@ public class DialogueManager : MonoBehaviour
 
         if (_instance._currentDialogueSet != null && _instance._currentDialogueSet.HasMoreDialogues())
         {
-            _instance._dialogueUI.ShowUI();
-            _instance.StartCoroutine(_instance.PlayDialogues(_instance._currentDialogueSet));
+            ShowUI();
+            _instance._dialogueCoroutine = _instance.PlayDialogue(_instance._currentDialogueIndex);
+            _instance.StartCoroutine(_instance._dialogueCoroutine);
         }
         else
         {
@@ -44,20 +48,43 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private IEnumerator PlayDialogues(DialogueSet dialogueSet)
+    private IEnumerator PlayDialogue(int dialogueIndex)
     {
-        while (dialogueSet.HasMoreDialogues())
+        if (_currentDialogueSet.HasMoreDialogues(dialogueIndex))
         {
-            DialogueEntry dialogue = dialogueSet.GetNextDialogue();
-            _dialogueUI.UpdateDialogueText(dialogue.text, dialogue.audioClip, dialogue.choices);
+            DialogueEntry dialogue = _currentDialogueSet.GetDialogueAt(dialogueIndex);
+            _dialogueUI.UpdateDialogueText(_currentCharacter.name, dialogue.text, dialogue.audioClip, dialogue.choices);
 
+            // Wait until the user clicks next button
             yield return new WaitUntil(() => _dialogueUI.IsDialogueComplete());
 
             if (dialogue.choices != null && dialogue.choices.Length > 0)
             {
                 yield break; // Stop if there are choices to be made
             }
+
+            // Wait for next button click
+            yield return new WaitUntil(() => _dialogueUI.IsNextClicked());
+
+            _currentDialogueIndex++;
         }
+
+        if (_currentDialogueSet.HasMoreDialogues(_currentDialogueIndex))
+        {
+            _dialogueCoroutine = PlayDialogue(_currentDialogueIndex);
+            StartCoroutine(_dialogueCoroutine);
+        }
+        else
+        {
+            StartCoroutine(HideNextButtonAfterDelay());
+            HideUI();
+        }
+    }
+
+    private IEnumerator HideNextButtonAfterDelay()
+    {
+        yield return new WaitForSeconds(2);
+        _dialogueUI.HideNextButton();
     }
 
     public static void HandleChoice(string nextDialogueKey)
@@ -71,9 +98,14 @@ public class DialogueManager : MonoBehaviour
         if (_instance._currentCharacter != null)
         {
             DialogueSet dialogueSet = _instance._currentCharacter.GetDialogueSet();
-            dialogueSet.Reset(); // Reset to start the new branch of dialogues
+            _instance._currentDialogueIndex = 0;
 
-            _instance.StartCoroutine(_instance.PlayDialogues(dialogueSet));
+            if (_instance._dialogueCoroutine != null)
+            {
+                _instance.StopCoroutine(_instance._dialogueCoroutine);
+            }
+            _instance._dialogueCoroutine = _instance.PlayDialogue(_instance._currentDialogueIndex);
+            _instance.StartCoroutine(_instance._dialogueCoroutine);
         }
     }
 
@@ -85,20 +117,30 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        if (_instance._currentDialogueSet.HasMoreDialogues())
+        if (_instance._currentDialogueSet.HasMoreDialogues(_instance._currentDialogueIndex))
         {
-            DialogueEntry dialogue = _instance._currentDialogueSet.GetNextDialogue();
-            _instance._dialogueUI.UpdateDialogueText(dialogue.text, dialogue.audioClip, dialogue.choices);
+            _instance._dialogueCoroutine = _instance.PlayDialogue(_instance._currentDialogueIndex);
+            _instance.StartCoroutine(_instance._dialogueCoroutine);
         }
         else
         {
-            _instance._dialogueUI.HideUI();
-            // Optionally transition to another state or end dialogue
+            _instance.StartCoroutine(_instance.HideNextButtonAfterDelay());
+            HideUI();
         }
     }
 
     public static Character GetCurrentCharacter()
     {
         return _instance._currentCharacter;
+    }
+
+    public static void ShowUI()
+    {
+        _instance._dialogueUI.gameObject.SetActive(true);
+    }
+
+    public static void HideUI()
+    {
+        _instance._dialogueUI.gameObject.SetActive(false);
     }
 }

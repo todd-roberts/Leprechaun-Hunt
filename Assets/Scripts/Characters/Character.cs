@@ -9,6 +9,7 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     private float walkDistance = 0.2159f; // Distance to walk
+
     [SerializeField]
     private float walkDuration = 2f; // Duration of the walk
 
@@ -34,10 +35,7 @@ public abstract class Character : MonoBehaviour
             eventTrigger = gameObject.AddComponent<EventTrigger>();
         }
 
-        EventTrigger.Entry pointerDownEntry = new()
-        {
-            eventID = EventTriggerType.PointerDown
-        };
+        EventTrigger.Entry pointerDownEntry = new() { eventID = EventTriggerType.PointerDown };
 
         pointerDownEntry.callback.AddListener((data) => OnPointerDown());
 
@@ -50,7 +48,9 @@ public abstract class Character : MonoBehaviour
 
         foreach (var gameStateDialogue in gameStateDialogues)
         {
-            _dialogues[gameStateDialogue.gameState] = new DialogueSet(new List<DialogueEntry>(gameStateDialogue.dialogues));
+            _dialogues[gameStateDialogue.gameState] = new DialogueSet(
+                new List<DialogueEntry>(gameStateDialogue.dialogues)
+            );
         }
     }
 
@@ -58,7 +58,6 @@ public abstract class Character : MonoBehaviour
     {
         transform.position = transform.parent.position - transform.forward * walkDistance;
     }
-
 
     private void Update()
     {

@@ -105,17 +105,17 @@ public class CharacterRig : MonoBehaviour
         if (!IsCloseToCamera())
         {
             Despawn();
-            return;
         }
     }
 
     private void Despawn()
     {
+        DialogueManager.HideUI();
         _characterSpawner.Poof(transform.position);
         _doorIsOpen = false;
         _door.transform.localRotation = Quaternion.identity;
         _character.ResetPosition();
-        _character.gameObject.SetActive(false);
+        _character.gameObject.SetActive(false);;
         gameObject.SetActive(false);
     }
 

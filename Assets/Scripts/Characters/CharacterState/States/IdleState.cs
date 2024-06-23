@@ -12,6 +12,6 @@ public class IdleState : CharacterState
 
     public override void OnPointerDown()
     {
-        DialogueManager.StartDialogue(_character);
+        _stateMachine.SetState(new InDialogueState());
     }
 }

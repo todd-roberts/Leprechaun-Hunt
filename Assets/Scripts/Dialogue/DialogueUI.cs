@@ -6,9 +6,13 @@ using UnityEngine.UI;
 public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text dialogueText;
+    [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private Button[] choiceButtons;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private Button nextButton; // Button to navigate to the next dialogue
+
     private bool isTextComplete = false;
+    private bool nextClicked = false;
     private string currentDialogueText = "";
     private DialogueChoice[] currentChoices = null;
     private bool choicesPresent = false;
@@ -16,10 +20,12 @@ public class DialogueUI : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        nextButton.gameObject.SetActive(false);
     }
 
-    public void UpdateDialogueText(string text, AudioClip audioClip, DialogueChoice[] choices)
+    public void UpdateDialogueText(string speakerName, string text, AudioClip audioClip, DialogueChoice[] choices)
     {
+        speakerNameText.text = speakerName; // Set the speaker name here
         currentDialogueText = text;
         choicesPresent = choices != null && choices.Length > 0;
         currentChoices = choices;
@@ -32,6 +38,8 @@ public class DialogueUI : MonoBehaviour
 
         float typingSpeed = audioClip != null ? Mathf.Max(text.Length / audioClip.length, 25f) : 25f;
         isTextComplete = false;
+        nextButton.gameObject.SetActive(false);
+        nextClicked = false;
 
         StartCoroutine(TypeOutText(text, typingSpeed, choices));
     }
@@ -48,7 +56,10 @@ public class DialogueUI : MonoBehaviour
         }
 
         isTextComplete = true;
-        ShowChoices(choices);
+        if (!audioSource.isPlaying)
+        {
+            ShowNextButton();
+        }
     }
 
     private void ShowChoices(DialogueChoice[] choices)
@@ -95,23 +106,32 @@ public class DialogueUI : MonoBehaviour
         }
     }
 
-    public void OnPanelClicked()
-    {
-        if (!isTextComplete)
-        {
-            StopAllCoroutines();
-            dialogueText.text = currentDialogueText;
-            isTextComplete = true;
-        }
-        else if (audioSource.isPlaying)
-        {
-            audioSource.Stop();
-            ShowChoices(currentChoices);
-        }
-    }
-
     public bool IsDialogueComplete()
     {
         return isTextComplete && !audioSource.isPlaying && !choicesPresent;
+    }
+
+    public bool IsNextClicked()
+    {
+        return nextClicked;
+    }
+
+    private void ShowNextButton()
+    {
+        nextButton.gameObject.SetActive(true);
+        nextButton.onClick.RemoveAllListeners();
+        nextButton.onClick.AddListener(OnNextButtonClicked);
+    }
+
+    public void HideNextButton()
+    {
+        nextButton.gameObject.SetActive(false);
+    }
+
+    private void OnNextButtonClicked()
+    {
+        nextClicked = true;
+        nextButton.gameObject.SetActive(false);
+        DialogueManager.TriggerNextDialogue();
     }
 }
