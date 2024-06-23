@@ -84,4 +84,6 @@ public abstract class Character : MonoBehaviour
     }
 
     public DialogueSet GetDialogueSet() => _dialogues[GameManager.GetGameState()];
+
+    public void Idle() => _stateMachine.SetState(new IdleState());
 }

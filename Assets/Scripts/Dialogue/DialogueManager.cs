@@ -7,10 +7,12 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField]
     private DialogueUI _dialogueUI;
+
+    private AudioSource _audio;
     private Character _currentCharacter;
-    private DialogueSet _currentDialogueSet;
-    private IEnumerator _dialogueCoroutine;
-    private int _currentDialogueIndex;
+
+    [SerializeField]
+    private float _delayBeforeHidingUI = 3;
 
     void Awake()
     {
@@ -18,6 +20,7 @@ public class DialogueManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            _audio = GetComponent<AudioSource>();
             HideUI();
         }
         else
@@ -28,111 +31,74 @@ public class DialogueManager : MonoBehaviour
 
     public static void StartDialogue(Character character)
     {
-        if (_instance == null)
-        {
-            Debug.LogError("DialogueManager instance is not set.");
-            return;
-        }
-
         _instance._currentCharacter = character;
-        _instance._currentDialogueSet = character.GetDialogueSet();
 
-        if (_instance._currentDialogueSet != null && _instance._currentDialogueSet.HasMoreDialogues(_instance._currentDialogueIndex))
-        {
-            ShowUI();
-            _instance._dialogueCoroutine = _instance.PlayDialogue(_instance._currentDialogueIndex);
-            _instance.StartCoroutine(_instance._dialogueCoroutine);
-        }
-        else
-        {
-            Debug.LogWarning($"No dialogues found for game state: {GameManager.GetGameState()}");
-        }
+        DialogueSet dialogueSet = _instance._currentCharacter.GetDialogueSet();
+
+        DialogueEntry dialogue = dialogueSet.GetInitialDialogue();
+
+        ShowUI();
+
+        _instance.StartCoroutine(_instance.PlayDialogue(dialogue));
     }
 
-    private IEnumerator PlayDialogue(int dialogueIndex)
+    private IEnumerator PlayDialogue(DialogueEntry dialogue)
     {
-        if (_currentDialogueSet.HasMoreDialogues(dialogueIndex))
+        if (dialogue.animationName != null && dialogue.animationName.Trim() != "")
         {
-            DialogueEntry dialogue = _currentDialogueSet.GetDialogueAt(dialogueIndex);
-            _dialogueUI.UpdateDialogueText(_currentCharacter.name, dialogue.text, dialogue.audioClip, dialogue.choices);
+            _currentCharacter.PlayAnimation(dialogue.animationName);
+        }
 
-            // Wait until the user clicks next button
-            yield return new WaitUntil(() => _dialogueUI.IsDialogueComplete());
+        _dialogueUI.UpdateDialogueText(_currentCharacter.name, dialogue);
 
-            if (dialogue.choices != null && dialogue.choices.Length > 0)
+        _audio.PlayOneShot(dialogue.audioClip);
+
+        yield return new WaitUntil(() => _instance.IsDialogueComplete());
+
+        DialogueSet dialogueSet = _currentCharacter.GetDialogueSet();
+        DialogueEntry currentDialogue = dialogueSet.GetCurrentDialogue();
+
+        if (dialogueSet.HasMoreDialogues()) {
+            if (currentDialogue.requiredProximity == 0)
             {
-                yield break; // Stop if there are choices to be made
+                _dialogueUI.ShowNextButton();
             }
-
-            // Wait for next button click
-            yield return new WaitUntil(() => _dialogueUI.IsNextClicked());
-
-            _currentDialogueIndex++;
-        }
-
-        if (_currentDialogueSet.HasMoreDialogues(_currentDialogueIndex))
-        {
-            _dialogueCoroutine = PlayDialogue(_currentDialogueIndex);
-            StartCoroutine(_dialogueCoroutine);
+            else {
+                yield return new WaitUntil(() => _instance.ProximityCheck());
+                PlayNextDialogue();
+            }
         }
         else
         {
-            StartCoroutine(HideNextButtonAfterDelay());
-            HideUI();
+            _instance.StartCoroutine(_instance.CompleteDialogue());
         }
     }
 
-    private IEnumerator HideNextButtonAfterDelay()
+    public static void PlayNextDialogue()
     {
-        yield return new WaitForSeconds(2);
-        _dialogueUI.HideNextButton();
+        DialogueSet dialogueSet = _instance._currentCharacter.GetDialogueSet();
+
+        DialogueEntry nextDialogue = dialogueSet.GetNextDialogue();
+
+        _instance.StartCoroutine(_instance.PlayDialogue(nextDialogue));
     }
 
-    public static void HandleChoice(string nextDialogueKey)
+    public bool IsDialogueComplete()
     {
-        if (_instance == null)
-        {
-            Debug.LogError("DialogueManager instance is not set.");
-            return;
-        }
-
-        if (_instance._currentCharacter != null)
-        {
-            DialogueSet dialogueSet = _instance._currentCharacter.GetDialogueSet();
-            _instance._currentDialogueIndex = 0;
-
-            if (_instance._dialogueCoroutine != null)
-            {
-                _instance.StopCoroutine(_instance._dialogueCoroutine);
-            }
-            _instance._dialogueCoroutine = _instance.PlayDialogue(_instance._currentDialogueIndex);
-            _instance.StartCoroutine(_instance._dialogueCoroutine);
-        }
+        return _instance._dialogueUI.IsTextComplete() && !_audio.isPlaying;
     }
 
-    public static void TriggerNextDialogue()
+    private IEnumerator CompleteDialogue()
     {
-        if (_instance == null || _instance._currentDialogueSet == null)
-        {
-            Debug.LogError("DialogueManager instance or current dialogue set is not set.");
-            return;
-        }
-
-        if (_instance._currentDialogueSet.HasMoreDialogues(_instance._currentDialogueIndex))
-        {
-            _instance._dialogueCoroutine = _instance.PlayDialogue(_instance._currentDialogueIndex);
-            _instance.StartCoroutine(_instance._dialogueCoroutine);
-        }
-        else
-        {
-            _instance.StartCoroutine(_instance.HideNextButtonAfterDelay());
-            HideUI();
-        }
+        yield return new WaitForSeconds(_delayBeforeHidingUI);
+        HideUI();
+        _currentCharacter.Idle();
     }
 
-    public static Character GetCurrentCharacter()
+    public static void Despawn()
     {
-        return _instance._currentCharacter;
+        HideUI();
+        _instance._audio.Stop();
     }
 
     public static void ShowUI()
@@ -143,5 +109,22 @@ public class DialogueManager : MonoBehaviour
     public static void HideUI()
     {
         _instance._dialogueUI.gameObject.SetActive(false);
+    }
+
+    private bool ProximityCheck()
+    {
+        DialogueEntry dialogue = _currentCharacter.GetDialogueSet().GetCurrentDialogue();
+
+        if (dialogue.requiredProximity == 0)
+        {
+            return true;
+        }
+
+        float distanceToCharacter = Vector3.Distance(
+            Camera.main.transform.position,
+            _currentCharacter.transform.position
+        );
+
+        return distanceToCharacter <= dialogue.requiredProximity;
     }
 }

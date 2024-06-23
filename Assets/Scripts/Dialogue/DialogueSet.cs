@@ -1,45 +1,61 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class DialogueSet
 {
-    private List<DialogueEntry> _dialogues;
-    private int _currentIndex = 0;
+    private Dictionary<string, DialogueEntry> _dialogues;
+    private string _currentKey;
+    private string _lastCheckpointKey;
 
     public DialogueSet(List<DialogueEntry> dialogues)
     {
-        _dialogues = dialogues;
+        _dialogues = new Dictionary<string, DialogueEntry>();
+        foreach (var dialogue in dialogues)
+        {
+            _dialogues[dialogue.key] = dialogue;
+        }
+
+        _currentKey = dialogues[0].key;
+        _lastCheckpointKey = _currentKey;
     }
 
     public bool HasMoreDialogues()
     {
-        return _currentIndex < _dialogues.Count;
+        return _dialogues[_currentKey].nextDialogueKey != null 
+            && _dialogues[_currentKey].nextDialogueKey.Trim() != "";
     }
 
-    public bool HasMoreDialogues(int index)
+    public DialogueEntry GetInitialDialogue()
     {
-        return index < _dialogues.Count;
+        _currentKey = _lastCheckpointKey;
+        return _dialogues[_currentKey];
     }
 
     public DialogueEntry GetNextDialogue()
     {
-        if (HasMoreDialogues())
+        if (_dialogues[_currentKey].nextDialogueKey == null)
         {
-            return _dialogues[_currentIndex++];
+            return null;
         }
-        return null;
+
+        _currentKey = _dialogues[_currentKey].nextDialogueKey;
+
+        if (_dialogues[_currentKey].isCheckpoint)
+        {
+            _lastCheckpointKey = _currentKey;
+        }
+
+        return _dialogues[_currentKey];
     }
 
-    public DialogueEntry GetDialogueAt(int index)
+    public void SetCurrentDialogue(string key)
     {
-        if (index >= 0 && index < _dialogues.Count)
+        if (_dialogues.ContainsKey(key))
         {
-            return _dialogues[index];
+            _currentKey = key;
         }
-        return null;
     }
 
-    public void Reset()
-    {
-        _currentIndex = 0;
-    }
+    public DialogueEntry GetCurrentDialogue() => _dialogues[_currentKey];
+
 }

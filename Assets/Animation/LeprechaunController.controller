@@ -88,7 +88,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lep_Hurray
+  m_Name: Celebrate
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -169,7 +169,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lep_thinking
+  m_Name: Think
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -277,7 +277,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lep_anger_A
+  m_Name: Anger
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -921,7 +921,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -5848186252723554743}
-    m_Position: {x: 260, y: -320, z: 0}
+    m_Position: {x: -260, y: -310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -240175888597168880}
     m_Position: {x: 270, y: -210, z: 0}
@@ -948,7 +948,7 @@ AnimatorStateMachine:
     m_Position: {x: 520, y: -320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7985849763978966056}
-    m_Position: {x: 540, y: -210, z: 0}
+    m_Position: {x: 30, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4716292479593465239}
     m_Position: {x: 550, y: -100, z: 0}
@@ -960,7 +960,7 @@ AnimatorStateMachine:
     m_Position: {x: 530, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1854025549676891347}
-    m_Position: {x: 0, y: -90, z: 0}
+    m_Position: {x: 800, y: -290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5862206710283115967}
     m_Position: {x: 550, y: 270, z: 0}
@@ -969,7 +969,7 @@ AnimatorStateMachine:
     m_Position: {x: 580, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9105566481498668655}
-    m_Position: {x: 780, y: -320, z: 0}
+    m_Position: {x: -140, y: -190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3384301140467552428}
     m_Position: {x: 790, y: -210, z: 0}
@@ -987,7 +987,7 @@ AnimatorStateMachine:
     m_Position: {x: 800, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6683242927464382027}
-    m_Position: {x: -120, y: 50, z: 0}
+    m_Position: {x: -20, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5482502426001616784}
     m_Position: {x: 810, y: 360, z: 0}
@@ -1036,7 +1036,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: -430, y: -150, z: 0}
   m_ExitPosition: {x: -260, y: 710, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -2961107575715583185}
+  m_DefaultState: {fileID: -6683242927464382027}
 --- !u!1102 &8496840267603651232
 AnimatorState:
   serializedVersion: 6
@@ -1071,7 +1071,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lep_Pointing_A_01
+  m_Name: Point
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

@@ -125,15 +125,105 @@ MonoBehaviour:
   gameStateDialogues:
   - gameState: 0
     dialogues:
-    - text: Ah, what have we here? I haven't seen a human in ages!
+    - key: leprechaun_1
+      text: Ah, what have we here? I haven't seen a human in ages!
       audioClip: {fileID: 8300000, guid: 4d1454d1b6e60e542b9e1720bc0f5bc6, type: 3}
       choices: []
+      isCheckpoint: 0
       nextDialogueKey: leprechaun_2
-    - text: I suppose that's to be expected given I live deep in the forest and do
+      animationName: Point
+      requiredProximity: 0
+    - key: leprechaun_2
+      text: I suppose that's to be expected given I live deep in the forest and do
         nothing but make shoes.
       audioClip: {fileID: 8300000, guid: b034199f6b65a2e4bb8a2acd2ca82460, type: 3}
       choices: []
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_3
+      animationName: 
+      requiredProximity: 0
+    - key: leprechaun_3
+      text: Let's get a good look at you.
+      audioClip: {fileID: 8300000, guid: 9563277431c9a564b8f63f0eb75ef41b, type: 3}
+      choices: []
+      isCheckpoint: 1
+      nextDialogueKey: leprechaun_4
+      animationName: 
+      requiredProximity: 0.5
+    - key: leprechaun_4
+      text: You're very big and very ugly. Definitely human. But also quite small
+        for someone so big.
+      audioClip: {fileID: 8300000, guid: e6e01565fee651d42a83b4b965a99c0d, type: 3}
+      choices: []
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_5
+      animationName: Point
+      requiredProximity: 0
+    - key: leprechaun_5
+      text: If I had to guess, I'd guess your name was...
+      audioClip: {fileID: 8300000, guid: b71bfcd5548df1b4690f010f51d1c7c2, type: 3}
+      choices: []
+      isCheckpoint: 1
+      nextDialogueKey: leprechaun_6
+      animationName: Think
+      requiredProximity: 0
+    - key: leprechaun_6
+      text: Carl. You're Carl Lewis Roberts of Conrow Drive in Manhattan, Kansas.
+        Is that about right?
+      audioClip: {fileID: 8300000, guid: d5ec029a1e7b23743bf80d4f32abf54b, type: 3}
+      choices:
+      - label: Yes
+        nextDialogueKey: leprechaun_7_a
+      - label: No
+        nextDialogueKey: leprechaun_7_b
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_7_b
+      animationName: Point
+      requiredProximity: 0
+    - key: leprechaun_7_a
+      text: What a lucky guess! I was torn between that and Captain Underpants. But
+        I decided you weren't handsome enough to be Captain Underpants.
+      audioClip: {fileID: 8300000, guid: 1b5550895dea4ff4bb02cecc153db7e3, type: 3}
+      choices: []
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_8
+      animationName: Celebrate
+      requiredProximity: 0
+    - key: leprechaun_7_b
+      text: Don't lie to me, me boy! I'll turn you into a newt faster than you can
+        say "She sells shamrock shakes by the seashore."
+      audioClip: {fileID: 8300000, guid: 09d1d794acca8144985afa2ad4824bff, type: 3}
+      choices: []
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_8
+      animationName: Anger
+      requiredProximity: 0
+    - key: leprechaun_8
+      text: But let me get an even closer look at you. Come closer. Close enough
+        that I may peer into your very soul!
+      audioClip: {fileID: 8300000, guid: 84976d522a17b614a8ebc88aa78c12b4, type: 3}
+      choices: []
+      isCheckpoint: 1
+      nextDialogueKey: leprechaun_9
+      animationName: 
+      requiredProximity: 0.2
+    - key: leprechaun_9
+      text: I knew it. You're looking for treasure. Shiny, golden, splendid treasure!
+      audioClip: {fileID: 8300000, guid: 875e6d904cfa74d4b8177d3d8ba8adb2, type: 3}
+      choices: []
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_10
+      animationName: Celebrate
+      requiredProximity: 0
+    - key: leprechaun_10
+      text: It just so happens I have some golden coins to spare. A whole pot of
+        'em!
+      audioClip: {fileID: 8300000, guid: 32aa831dec68e484f876cf4579d9e328, type: 3}
+      choices: []
+      isCheckpoint: 1
       nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
 --- !u!95 &6555768264951065628
 Animator:
   serializedVersion: 5
