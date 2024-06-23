@@ -11,9 +11,8 @@ public class CharacterStateMachine
     public void SetState(CharacterState state)
     {
         _currentState?.Exit();
-          
-        state.StateMachine = this;
-        state.Character = _character;
+
+        state.Initialize(_character, this);
         
         _currentState = state;
         _currentState.Enter();

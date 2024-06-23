@@ -59,6 +59,8 @@ public abstract class Character : MonoBehaviour
 
     public float GetWalkDuration() => walkDuration; 
 
-    public Animator GetAnimator() => _animator;
+    public void PlayAnimation (string animationName) {
+        _animator.Play(animationName);
+    }
 }
 

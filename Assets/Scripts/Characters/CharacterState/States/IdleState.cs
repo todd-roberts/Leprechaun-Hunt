@@ -4,7 +4,7 @@ public class IdleState : CharacterState
 {
     public override void Enter()
     {
-        Character.GetAnimator().Play("Idle");
+        _character.PlayAnimation("Idle");
     }
 
     public override void Update()
@@ -14,10 +14,10 @@ public class IdleState : CharacterState
 
     private void FaceCamera()
     {
-        Vector3 direction = Camera.main.transform.position - Character.transform.position;
+        Vector3 direction = Camera.main.transform.position - _character.transform.position;
         direction.y = 0; // Keep only the horizontal direction
         Quaternion rotation = Quaternion.LookRotation(direction);
-        Character.transform.rotation = Quaternion.Slerp(Character.transform.rotation, rotation, Time.deltaTime * 2);
+        _character.transform.rotation = Quaternion.Slerp(_character.transform.rotation, rotation, Time.deltaTime * 2);
     }
 
     public override void OnPointerDown()
