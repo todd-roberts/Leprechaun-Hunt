@@ -2,18 +2,12 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.UI;
-using System;
 
 public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Button[] choiceButtons;
-
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private DialogueManager dialogueManager;
-
-    public float baseTypingSpeed = 25f;
-
     private bool isTextComplete = false;
     private string currentDialogueText = "";
     private DialogueChoice[] currentChoices = null;
@@ -30,14 +24,13 @@ public class DialogueUI : MonoBehaviour
         choicesPresent = choices != null && choices.Length > 0;
         currentChoices = choices;
 
-
         if (audioClip != null)
         {
             audioSource.clip = audioClip;
             audioSource.Play();
         }
 
-        float typingSpeed = audioClip != null ? Mathf.Max(text.Length / audioClip.length, baseTypingSpeed) : baseTypingSpeed;
+        float typingSpeed = audioClip != null ? Mathf.Max(text.Length / audioClip.length, 25f) : 25f;
         isTextComplete = false;
 
         StartCoroutine(TypeOutText(text, typingSpeed, choices));
@@ -90,7 +83,8 @@ public class DialogueUI : MonoBehaviour
 
     private void HandleChoice(DialogueChoice choice)
     {
-        dialogueManager.StartDialogueForScene(choice.nextDialogueKey);
+        // Call HandleChoice on the static DialogueManager
+        DialogueManager.HandleChoice(choice.nextDialogueKey);
     }
 
     private void HideChoices()
@@ -121,4 +115,3 @@ public class DialogueUI : MonoBehaviour
         return isTextComplete && !audioSource.isPlaying && !choicesPresent;
     }
 }
-

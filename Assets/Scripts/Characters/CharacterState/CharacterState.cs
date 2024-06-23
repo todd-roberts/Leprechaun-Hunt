@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public abstract class CharacterState
 {
 
@@ -17,4 +19,12 @@ public abstract class CharacterState
     public virtual void Update() { }
 
     public virtual void OnPointerDown() { }
+
+    protected void FaceCamera()
+    {
+        Vector3 direction = Camera.main.transform.position - _character.transform.position;
+        direction.y = 0; // Keep only the horizontal direction
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        _character.transform.rotation = Quaternion.Slerp(_character.transform.rotation, rotation, Time.deltaTime * 2);
+    }
 }

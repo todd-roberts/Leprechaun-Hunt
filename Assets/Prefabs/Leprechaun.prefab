@@ -120,6 +120,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e5a14ac7657b14a8537a67236e5d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkDistance: 0.2159
+  walkDuration: 2
+  gameStateDialogues:
+  - gameState: 0
+    dialogues:
+    - text: Ah, what have we here? I haven't seen a human in ages!
+      audioClip: {fileID: 8300000, guid: 4d1454d1b6e60e542b9e1720bc0f5bc6, type: 3}
+      choices: []
+      nextDialogueKey: leprechaun_2
+    - text: I suppose that's to be expected given I live deep in the forest and do
+        nothing but make shoes.
+      audioClip: {fileID: 8300000, guid: b034199f6b65a2e4bb8a2acd2ca82460, type: 3}
+      choices: []
+      nextDialogueKey: 
 --- !u!95 &6555768264951065628
 Animator:
   serializedVersion: 5
