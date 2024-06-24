@@ -6,12 +6,23 @@ public class DialogueEntry
     public string key;
     public string text;
     public AudioClip audioClip;
-    public DialogueChoice[] choices;
 
     public bool isCheckpoint;
     public string nextDialogueKey;
 
-    public string animationName;
+     public bool PointsToNextDialogue()
+    {
+        return nextDialogueKey != null &&
+            nextDialogueKey.Trim() != "";
+    }
 
+    public string animationName;
     public float requiredProximity;
+
+    public bool RequiresProximityCheck() => requiredProximity > 0;
+
+    public DialogueChoice choice1;
+    public DialogueChoice choice2;
+
+    public bool HasChoices() => choice1 != null;
 }

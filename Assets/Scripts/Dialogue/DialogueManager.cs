@@ -42,9 +42,14 @@ public class DialogueManager : MonoBehaviour
         _instance.StartCoroutine(_instance.PlayDialogue(dialogue));
     }
 
+    private void PlayDialogueCoroutine(DialogueEntry dialogue)
+    {
+        StartCoroutine(PlayDialogue(dialogue));
+    }
+
     private IEnumerator PlayDialogue(DialogueEntry dialogue)
     {
-        if (dialogue.animationName != null && dialogue.animationName.Trim() != "")
+        if (!string.IsNullOrEmpty(dialogue.animationName))
         {
             _currentCharacter.PlayAnimation(dialogue.animationName);
         }
@@ -53,39 +58,52 @@ public class DialogueManager : MonoBehaviour
 
         _audio.PlayOneShot(dialogue.audioClip);
 
-        yield return new WaitUntil(() => _instance.IsDialogueComplete());
+        yield return new WaitUntil(() => IsDialogueComplete());
 
-        DialogueSet dialogueSet = _currentCharacter.GetDialogueSet();
-        DialogueEntry currentDialogue = dialogueSet.GetCurrentDialogue();
-
-        if (dialogueSet.HasMoreDialogues()) {
-            if (currentDialogue.requiredProximity == 0)
+        if (dialogue.HasChoices())
+        {
+            _dialogueUI.ShowChoices(dialogue);
+        }
+        else if (dialogue.PointsToNextDialogue())
+        {
+            if (dialogue.RequiresProximityCheck())
+            {
+                yield return new WaitUntil(() => ProximityCheck());
+                PlayNextDialogue();
+            }
+            else
             {
                 _dialogueUI.ShowNextButton();
-            }
-            else {
-                yield return new WaitUntil(() => _instance.ProximityCheck());
-                PlayNextDialogue();
             }
         }
         else
         {
-            _instance.StartCoroutine(_instance.CompleteDialogue());
+            StartCoroutine(CompleteDialogue());
         }
     }
 
     public static void PlayNextDialogue()
     {
         DialogueSet dialogueSet = _instance._currentCharacter.GetDialogueSet();
+        
+        DialogueEntry currentDialogue = dialogueSet.GetCurrentDialogue();
+        DialogueEntry nextDialogue = dialogueSet.SetCurrentDialogue(currentDialogue.nextDialogueKey);
 
-        DialogueEntry nextDialogue = dialogueSet.GetNextDialogue();
-
-        _instance.StartCoroutine(_instance.PlayDialogue(nextDialogue));
+        _instance.PlayDialogueCoroutine(nextDialogue);
     }
 
-    public bool IsDialogueComplete()
+    public static void HandleChoice(string nextDialogueKey)
     {
-        return _instance._dialogueUI.IsTextComplete() && !_audio.isPlaying;
+        DialogueSet dialogueSet = _instance._currentCharacter.GetDialogueSet();
+
+        DialogueEntry nextDialogue = dialogueSet.SetCurrentDialogue(nextDialogueKey);
+
+        _instance.PlayDialogueCoroutine(nextDialogue);
+    }
+
+    public static bool IsDialogueComplete()
+    {
+        return _instance._dialogueUI.IsTextComplete() && !_instance._audio.isPlaying;
     }
 
     private IEnumerator CompleteDialogue()

@@ -19,41 +19,24 @@ public class DialogueSet
         _lastCheckpointKey = _currentKey;
     }
 
-    public bool HasMoreDialogues()
-    {
-        return _dialogues[_currentKey].nextDialogueKey != null 
-            && _dialogues[_currentKey].nextDialogueKey.Trim() != "";
-    }
-
     public DialogueEntry GetInitialDialogue()
     {
         _currentKey = _lastCheckpointKey;
-        return _dialogues[_currentKey];
+        
+        return GetCurrentDialogue();
     }
 
-    public DialogueEntry GetNextDialogue()
+    public DialogueEntry GetNextDialogue() => 
+        SetCurrentDialogue(GetCurrentDialogue().nextDialogueKey);
+    
+
+    public DialogueEntry SetCurrentDialogue(string key)
     {
-        if (_dialogues[_currentKey].nextDialogueKey == null)
-        {
-            return null;
-        }
+        _currentKey = key;
 
-        _currentKey = _dialogues[_currentKey].nextDialogueKey;
+         _lastCheckpointKey = GetCurrentDialogue().isCheckpoint ? _currentKey : _lastCheckpointKey;
 
-        if (_dialogues[_currentKey].isCheckpoint)
-        {
-            _lastCheckpointKey = _currentKey;
-        }
-
-        return _dialogues[_currentKey];
-    }
-
-    public void SetCurrentDialogue(string key)
-    {
-        if (_dialogues.ContainsKey(key))
-        {
-            _currentKey = key;
-        }
+        return GetCurrentDialogue();
     }
 
     public DialogueEntry GetCurrentDialogue() => _dialogues[_currentKey];

@@ -8,21 +8,27 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private Button nextButton; // Button to navigate to the next dialogue
+    [SerializeField] private Button choiceButton1;
+    [SerializeField] private Button choiceButton2;
 
     private bool _isTextComplete;
 
     private void Awake()
     {
         nextButton.gameObject.SetActive(false);
+        choiceButton1.gameObject.SetActive(false);
+        choiceButton2.gameObject.SetActive(false);
     }
 
     public void UpdateDialogueText(string speakerName, DialogueEntry dialogueEntry)
     {
-        speakerNameText.text = speakerName; 
+        speakerNameText.text = speakerName;
 
         float typingSpeed = dialogueEntry.audioClip != null ? Mathf.Max(dialogueEntry.text.Length / dialogueEntry.audioClip.length, 25f) : 25f;
         _isTextComplete = false;
         nextButton.gameObject.SetActive(false);
+        choiceButton1.gameObject.SetActive(false);
+        choiceButton2.gameObject.SetActive(false);
 
         StartCoroutine(TypeOutText(dialogueEntry.text, typingSpeed));
     }
@@ -43,7 +49,6 @@ public class DialogueUI : MonoBehaviour
 
     public bool IsTextComplete() => _isTextComplete;
 
-
     public void ShowNextButton()
     {
         nextButton.gameObject.SetActive(true);
@@ -60,5 +65,38 @@ public class DialogueUI : MonoBehaviour
     {
         nextButton.gameObject.SetActive(false);
         DialogueManager.PlayNextDialogue();
+    }
+
+    public void ShowChoices(DialogueEntry dialogue)
+    {
+        if (dialogue.choice1 != null)
+        {
+            ShowChoice(dialogue.choice1, choiceButton1);
+        }
+
+        if (dialogue.choice2 != null)
+        {
+            ShowChoice(dialogue.choice2, choiceButton2);
+        }
+    }
+
+    private void ShowChoice (DialogueChoice choice, Button button)
+    {
+        button.gameObject.SetActive(true);
+        button.GetComponentInChildren<TMP_Text>().text = choice.label;
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(() => OnChoiceSelected(choice.nextDialogueKey));
+    }
+
+    private void OnChoiceSelected(string nextDialogueKey)
+    {
+        HideChoices();
+        DialogueManager.HandleChoice(nextDialogueKey);
+    }
+
+    public void HideChoices()
+    {
+        choiceButton1.gameObject.SetActive(false);
+        choiceButton2.gameObject.SetActive(false);
     }
 }
