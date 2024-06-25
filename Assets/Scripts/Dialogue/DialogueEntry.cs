@@ -24,5 +24,8 @@ public class DialogueEntry
     public DialogueChoice choice1;
     public DialogueChoice choice2;
 
-    public bool HasChoices() => choice1 != null;
+    public bool HasChoices() => choice1 != null && choice1.label != null && choice1.label.Trim() != "";
+
+    public bool shouldProgressGameState;
+    public GameState progressToGameState;
 }

@@ -109,8 +109,21 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator CompleteDialogue()
     {
         yield return new WaitForSeconds(_delayBeforeHidingUI);
+
         HideUI();
+
+        UpdateGameState();
+
         _currentCharacter.Idle();
+    }
+
+    private void UpdateGameState() {
+        DialogueEntry dialogue = _currentCharacter.GetDialogueSet().GetCurrentDialogue();
+
+        if (dialogue.shouldProgressGameState)
+        {
+            GameManager.SetGameState(dialogue.progressToGameState);
+        }
     }
 
     public static void Despawn()

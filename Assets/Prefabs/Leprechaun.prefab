@@ -138,6 +138,8 @@ MonoBehaviour:
       choice2:
         label: 
         nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
     - key: leprechaun_2
       text: I suppose that's to be expected given I live deep in the forest and do
         nothing but make shoes.
@@ -152,19 +154,23 @@ MonoBehaviour:
       choice2:
         label: 
         nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
     - key: leprechaun_3
       text: Let's get a good look at you.
       audioClip: {fileID: 8300000, guid: 9563277431c9a564b8f63f0eb75ef41b, type: 3}
       isCheckpoint: 1
       nextDialogueKey: leprechaun_4
       animationName: 
-      requiredProximity: 0.5
+      requiredProximity: 0.4
       choice1:
         label: 
         nextDialogueKey: 
       choice2:
         label: 
         nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
     - key: leprechaun_4
       text: You're very big and very ugly. Definitely human. But also quite small
         for someone so big.
@@ -179,6 +185,8 @@ MonoBehaviour:
       choice2:
         label: 
         nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
     - key: leprechaun_5
       text: If I had to guess, I'd guess your name was...
       audioClip: {fileID: 8300000, guid: b71bfcd5548df1b4690f010f51d1c7c2, type: 3}
@@ -192,6 +200,8 @@ MonoBehaviour:
       choice2:
         label: 
         nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
     - key: leprechaun_6
       text: Carl. You're Carl Lewis Roberts of Conrow Drive in Manhattan, Kansas.
         Is that about right?
@@ -206,6 +216,8 @@ MonoBehaviour:
       choice2:
         label: No
         nextDialogueKey: leprechaun_7_b
+      shouldProgressGameState: 0
+      progressToGameState: 0
     - key: leprechaun_7_a
       text: What a lucky guess! I was torn between that and Captain Underpants. But
         I decided you weren't handsome enough to be Captain Underpants.
@@ -220,6 +232,8 @@ MonoBehaviour:
       choice2:
         label: 
         nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
     - key: leprechaun_7_b
       text: Don't lie to me, me boy! I'll turn you into a newt faster than you can
         say "She sells shamrock shakes by the seashore."
@@ -234,6 +248,8 @@ MonoBehaviour:
       choice2:
         label: 
         nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
     - key: leprechaun_8
       text: But let me get an even closer look at you. Come closer. Close enough
         that I may peer into your very soul!
@@ -248,12 +264,14 @@ MonoBehaviour:
       choice2:
         label: 
         nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
     - key: leprechaun_9
       text: I knew it. You're looking for treasure. Shiny, golden, splendid treasure!
       audioClip: {fileID: 8300000, guid: 875e6d904cfa74d4b8177d3d8ba8adb2, type: 3}
       isCheckpoint: 0
       nextDialogueKey: leprechaun_10
-      animationName: Celebrate
+      animationName: Point
       requiredProximity: 0
       choice1:
         label: 
@@ -261,10 +279,296 @@ MonoBehaviour:
       choice2:
         label: 
         nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
     - key: leprechaun_10
       text: It just so happens I have some golden coins to spare. A whole pot of
         'em!
       audioClip: {fileID: 8300000, guid: 32aa831dec68e484f876cf4579d9e328, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: leprechaun_11
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_11
+      text: I'll even tell you right where they are. No riddles, puzzles, or games
+        from me. Everything above board.
+      audioClip: {fileID: 8300000, guid: e3a229c6e32606d43ab92358006019ed, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_12
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_12
+      text: I've hidden the pot of gold at the end of a magnificent rainbow. There
+        is a small catch though...
+      audioClip: {fileID: 8300000, guid: 5719cd0ecd00dc448817fc2293ec2907, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_13
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_13
+      text: For a human to see the treasure, they must be the luckiest person in
+        the world.
+      audioClip: {fileID: 8300000, guid: 7200252c1eb19094fb83c934390e379b, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_14
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_14
+      text: To gauge your luck, I'll ask you a series of questions.
+      audioClip: {fileID: 8300000, guid: dac6b878c088d244e8f0f23828d0761b, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: leprechaun_15
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_15
+      text: Have you won the lottery a single time in your entire life?
+      audioClip: {fileID: 8300000, guid: a8115a3b72740c040adb98b9a1727883, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: Yes
+        nextDialogueKey: leprechaun_18_a
+      choice2:
+        label: No
+        nextDialogueKey: leprechaun_16
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_16
+      text: Do you open umbrellas indoors?
+      audioClip: {fileID: 8300000, guid: f321c2d393686ca42a8fe285f934fd33, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_16
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: Yes
+        nextDialogueKey: leprechaun_17
+      choice2:
+        label: No
+        nextDialogueKey: leprechaun_17
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_17
+      text: 'Last question: Which number is greater, 7 or 13?'
+      audioClip: {fileID: 8300000, guid: 2805858a775adec4ea967a412d88dff0, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 7
+        nextDialogueKey: leprechaun_18_b
+      choice2:
+        label: 13
+        nextDialogueKey: leprechaun_18_c
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_18_a
+      text: I'm sorry... Not lucky enough. You won the lottery a single time in your
+        life. The luckiest person in the world would have won it more than once.
+      audioClip: {fileID: 8300000, guid: 972ed647a753e974d91460a1c72e5b80, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_19
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_18_b
+      text: Sorry... but the luckiest person in the world would have at least GUESSED
+        correctly. 13 is clearly greater than 7. By 6 whole numbers!
+      audioClip: {fileID: 8300000, guid: e57f0c604c03699429a09d3d9ecf6c17, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_19
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_18_c
+      text: No... I'm afraid 7 is greater than 13. 7 is the luckiest number there
+        is, and 13 is a terrible omen. Very misfortunate answer.
+      audioClip: {fileID: 8300000, guid: 1713e7d57411f33468c17ff4cbfe8b36, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_19
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_19
+      text: Sadly, it does indeed appear that you are NOT the luckiest person in
+        the world. Or even the 1 millionth luckiest...
+      audioClip: {fileID: 8300000, guid: af6f607f50ad49c4b92fbb67a0f22811, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_20
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_20
+      text: But perhaps there is something we can do to improve your fortune... Why
+        yes! I know exactly what we can do.
+      audioClip: {fileID: 8300000, guid: 4d44361a87520074984d46a2f91a818e, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: leprechaun_21
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_21
+      text: You must find the three lucky trinkets. Legend says that three items
+        bring extraordinary luck to their owners. The three items are...
+      audioClip: {fileID: 8300000, guid: ec5f5b7008d0d914cab0c01f484a122c, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: leprechaun_22
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_22
+      text: A FOUR leaf clover! It must have four leaves. Three leaves is just a
+        piece of rubbish.
+      audioClip: {fileID: 8300000, guid: c7626954de64e764a92e42723cc865a1, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_23
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_23
+      text: A rabbit's foot. Not the whole rabbit, mind you. Just the foot. Good
+        luck convincing a rabbit to give you one!
+      audioClip: {fileID: 8300000, guid: 26e82db5d7907b4479c3608186933c3b, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_24
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_24
+      text: And last but certainly not least, a metal horse shoe. Now that I think
+        about it, luck has got a lot to do with feet and shoes.
+      audioClip: {fileID: 8300000, guid: e76b140c132d2634b9cf8a03a521e380, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_25
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_25
+      text: So that's it. Bring me the three lucky trinkets, and I'll use their magic
+        to grant you secret RAINBOW VISION.
+      audioClip: {fileID: 8300000, guid: 5631f0f0b4a2b6f428a88f8dcb4331ea, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: leprechaun_26
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_26
+      text: Start by finding us that FOUR leaf clover. You can look high and low
+        for it, but low is probably better.
+      audioClip: {fileID: 8300000, guid: dd7a829ce7f3e2b429102715ce56ec52, type: 3}
       isCheckpoint: 1
       nextDialogueKey: 
       animationName: 
@@ -275,6 +579,25 @@ MonoBehaviour:
       choice2:
         label: 
         nextDialogueKey: 
+      shouldProgressGameState: 1
+      progressToGameState: 1
+  - gameState: 1
+    dialogues:
+    - key: leprechaun_27
+      text: You don't seem to have the four leaf clover yet. Keep looking!
+      audioClip: {fileID: 8300000, guid: d28a1cc850f1478468e8d125be316d75, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
 --- !u!95 &6555768264951065628
 Animator:
   serializedVersion: 5

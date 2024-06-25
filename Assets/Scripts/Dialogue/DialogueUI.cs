@@ -15,20 +15,22 @@ public class DialogueUI : MonoBehaviour
 
     private void Awake()
     {
-        nextButton.gameObject.SetActive(false);
-        choiceButton1.gameObject.SetActive(false);
-        choiceButton2.gameObject.SetActive(false);
+        HideButtons();
+    }
+
+    private void HideButtons() {
+        HideNextButton();
+        HideChoices();
     }
 
     public void UpdateDialogueText(string speakerName, DialogueEntry dialogueEntry)
     {
+        HideButtons();
+
         speakerNameText.text = speakerName;
 
         float typingSpeed = dialogueEntry.audioClip != null ? Mathf.Max(dialogueEntry.text.Length / dialogueEntry.audioClip.length, 25f) : 25f;
         _isTextComplete = false;
-        nextButton.gameObject.SetActive(false);
-        choiceButton1.gameObject.SetActive(false);
-        choiceButton2.gameObject.SetActive(false);
 
         StartCoroutine(TypeOutText(dialogueEntry.text, typingSpeed));
     }
@@ -83,7 +85,7 @@ public class DialogueUI : MonoBehaviour
     private void ShowChoice (DialogueChoice choice, Button button)
     {
         button.gameObject.SetActive(true);
-        button.GetComponentInChildren<TMP_Text>().text = choice.label;
+        button.transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = choice.label;
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => OnChoiceSelected(choice.nextDialogueKey));
     }
