@@ -26,7 +26,11 @@ public abstract class Character : MonoBehaviour
         SetupOnClickHandler();
         InitializeDialogues();
         ResetPosition();
+
+        OnAwake();
     }
+
+    protected virtual void OnAwake() { }
 
     private void SetupOnClickHandler()
     {
@@ -78,10 +82,14 @@ public abstract class Character : MonoBehaviour
 
     public float GetWalkDuration() => walkDuration;
 
-    public void PlayAnimation(string animationName)
+    public virtual void PlayAnimation(string animationName)
     {
         _animator.Play(animationName);
+
+        OnPlayAnimation(animationName);
     }
+
+    protected virtual void OnPlayAnimation(string animationName) { }
 
     public DialogueSet GetDialogueSet() => _dialogues[GameManager.GetGameState()];
 

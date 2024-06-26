@@ -27,3 +27,33 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: leprechaun
     m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5507868462303062429
+      m_GuidHigh: 15468376270627636400
+    m_SerializedTextureGuid:
+      m_GuidLow: 15115257135679069497
+      m_GuidHigh: 13935927329094893883
+    m_Size: {x: 0.2159, y: 0.2159}
+    m_SpecifySize: 1
+    m_Name: rabbit
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5718168965901729263
+      m_GuidHigh: 1443741910844846219
+    m_SerializedTextureGuid:
+      m_GuidLow: 17884976134695430769
+      m_GuidHigh: 227782145080649625
+    m_Size: {x: 0.2159, y: 0.2159}
+    m_SpecifySize: 1
+    m_Name: horseShoe
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5504624397079110001
+      m_GuidHigh: 15708381586763610812
+    m_SerializedTextureGuid:
+      m_GuidLow: 2770876460176566668
+      m_GuidHigh: 13481775263327562506
+    m_Size: {x: 0.2159, y: 0.2159}
+    m_SpecifySize: 1
+    m_Name: rainbow
+    m_Texture: {fileID: 0}
