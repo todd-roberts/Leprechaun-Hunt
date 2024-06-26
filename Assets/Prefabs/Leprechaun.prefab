@@ -130,7 +130,7 @@ MonoBehaviour:
       audioClip: {fileID: 8300000, guid: 4d1454d1b6e60e542b9e1720bc0f5bc6, type: 3}
       isCheckpoint: 0
       nextDialogueKey: leprechaun_2
-      animationName: Point
+      animationName: 
       requiredProximity: 0
       choice1:
         label: 
@@ -586,6 +586,57 @@ MonoBehaviour:
     - key: leprechaun_27
       text: You don't seem to have the four leaf clover yet. Keep looking!
       audioClip: {fileID: 8300000, guid: d28a1cc850f1478468e8d125be316d75, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+  - gameState: 2
+    dialogues:
+    - key: leprechaun_28
+      text: Eureka! That is indeed a clover with four and not three leaves.
+      audioClip: {fileID: 8300000, guid: 01b31526f214a604281116d25f6b0f63, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_29
+      animationName: Celebrate
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: leprechaun_29
+      text: 'Now find a rabbit''s foot. Here''s a hint: You''ll typically find one
+        at the end of a rabbit''s leg.'
+      audioClip: {fileID: 8300000, guid: c340bbe04bb87dc41b036d573340bdaa, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 1
+      progressToGameState: 3
+  - gameState: 3
+    dialogues:
+    - key: leprechaun_30
+      text: I don't see a rabbit's foot, or even a rabbit's toe. Please hurry--I
+        don't have all day.
+      audioClip: {fileID: 8300000, guid: 5abd9031564f3084b84caf1fd70d3103, type: 3}
       isCheckpoint: 0
       nextDialogueKey: 
       animationName: 

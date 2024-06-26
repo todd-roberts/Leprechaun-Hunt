@@ -1,106 +1,106 @@
 using UnityEngine;
-using UnityEngine.XR.ARFoundation;
-using Unity.Collections;
-using System.Collections.Generic;
 
 public class CloverSpawner : MonoBehaviour
 {
     public GameObject threeLeafCloverPrefab;
     public GameObject fourLeafCloverPrefab;
-    public int numberOfClovers = 50;
-    public Material grassMaterial;
+    public int totalNumberOfClovers = 50; // Total number of clovers
 
-    private List<ARPlane> planes = new List<ARPlane>();
-    private ARPlaneManager _planeManager;
+    [Range(0, 100)]
+    public float percentageOfFourLeafClovers = 10.0f; // Percentage of clovers that should be 4-leaf
+    public GameObject groundPlane; // Assign the pre-created ground plane in the inspector
+    public float minDistanceFromCamera = 0.2f; // Minimum distance from the camera
+    public float initialGroundPlaneHeight = 1.0f; // Initial distance below the camera
 
-    void Start()
+    public float zOffset = 1f;
+
+    private void Awake()
     {
-        _planeManager = GetComponent<ARPlaneManager>();
-        _planeManager.planesChanged += OnPlanesChanged;
+        groundPlane.SetActive(false); // Ensure the ground plane is initially inactive
     }
 
-    private void OnPlanesChanged(ARPlanesChangedEventArgs args)
+    public void Spawn()
     {
-        foreach (ARPlane plane in args.added)
+        SpawnClovers();
+        groundPlane.SetActive(true);
+        AdjustGroundPlanePosition(initialGroundPlaneHeight);
+    }
+
+    public void CloseGame()
+    {
+        groundPlane.SetActive(false);
+    }
+
+    void Update()
+    {
+        // Adjust the ground plane if the camera gets too close
+        if (
+            Camera.main.transform.position.y - groundPlane.transform.position.y
+            < minDistanceFromCamera
+        )
         {
-            if (!planes.Contains(plane) && IsPlaneValid(plane))
-            {
-                planes.Add(plane);
-                SpawnClovers(plane);
-            }
+            groundPlane.transform.position = new Vector3(
+                groundPlane.transform.position.x,
+                Camera.main.transform.position.y - minDistanceFromCamera,
+                groundPlane.transform.position.z
+            );
         }
     }
 
-    private bool IsPlaneValid(ARPlane plane)
+    private void AdjustGroundPlanePosition(float height)
     {
-        // Check if the plane is below the camera
-        if (plane.transform.position.y >= Camera.main.transform.position.y)
-        {
-            return false;
-        }
-
-        // Check if the plane is level with the ground (normal vector pointing up)
-        if (Vector3.Dot(plane.transform.up, Vector3.up) < 0.9f)
-        {
-            return false;
-        }
-
-        return true;
+        groundPlane.transform.position = new Vector3(
+            Camera.main.transform.position.x,
+            Camera.main.transform.position.y - height,
+            Camera.main.transform.position.z + zOffset
+        );
+        groundPlane.transform.rotation = Quaternion.identity;
     }
 
-    private void SpawnClovers(ARPlane plane)
+    private void SpawnClovers()
     {
-        NativeArray<Vector2> boundaryPoints = plane.boundary;
-        Vector3[] boundaryPoints3D = new Vector3[boundaryPoints.Length];
+        int numberOfFourLeafClovers = Mathf.RoundToInt(
+            totalNumberOfClovers * (percentageOfFourLeafClovers / 100)
+        );
+        int numberOfThreeLeafClovers = totalNumberOfClovers - numberOfFourLeafClovers;
 
-        for (int i = 0; i < boundaryPoints.Length; i++)
+        for (int i = 0; i < numberOfThreeLeafClovers; i++)
         {
-            boundaryPoints3D[i] = plane.transform.TransformPoint(new Vector3(boundaryPoints[i].x, 0, boundaryPoints[i].y));
+            Vector3 randomPosition = GetRandomPointOnPlane();
+            GameObject clover = Instantiate(
+                threeLeafCloverPrefab,
+                randomPosition,
+                Quaternion.Euler(0, Random.Range(0, 360), 0)
+            );
+            clover.transform.localScale *= Random.Range(1.0f, 1.5f); // Scale up the clovers
+            clover.transform.SetParent(groundPlane.transform); // Parent to ground plane
         }
 
-        Vector3 center = plane.transform.position;
-        Quaternion rotation = plane.transform.rotation;
-
-        // Create a grass plane
-        GameObject grassPlane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-        grassPlane.transform.position = center;
-        grassPlane.transform.rotation = rotation;
-        grassPlane.transform.localScale = new Vector3(plane.size.x, 1, plane.size.y) * 0.1f;
-        grassPlane.GetComponent<Renderer>().material = grassMaterial;
-
-        // Spawn clovers
-        for (int i = 0; i < numberOfClovers; i++)
+        for (int i = 0; i < numberOfFourLeafClovers; i++)
         {
-            Vector3 randomPosition = GetRandomPointInPlane(boundaryPoints3D) + center;
-            GameObject clover = Instantiate(threeLeafCloverPrefab, randomPosition, Quaternion.Euler(0, Random.Range(0, 360), 0));
-            clover.transform.localScale *= Random.Range(0.9f, 1.1f);
+            Vector3 randomPosition = GetRandomPointOnPlane();
+            GameObject clover = Instantiate(
+                fourLeafCloverPrefab,
+                randomPosition,
+                Quaternion.Euler(0, Random.Range(0, 360), 0)
+            );
+            clover.transform.localScale *= Random.Range(1.0f, 1.5f); // Scale up the clovers
+            clover.transform.SetParent(groundPlane.transform); // Parent to ground plane
         }
-
-        // Spawn one 4-leaf clover
-        Vector3 specialPosition = GetRandomPointInPlane(boundaryPoints3D) + center;
-        GameObject fourLeafClover = Instantiate(fourLeafCloverPrefab, specialPosition, Quaternion.Euler(0, Random.Range(0, 360), 0));
-        fourLeafClover.transform.localScale *= Random.Range(0.9f, 1.1f);
     }
 
-    private Vector3 GetRandomPointInPlane(Vector3[] boundary)
+    private Vector3 GetRandomPointOnPlane()
     {
-        // Generate a random point inside the plane boundary using the centroid method
-        Vector3 randomPoint = Vector3.zero;
-        float area = 0;
+        float halfScaleX = groundPlane.transform.localScale.x * 5; // 10 (scale) / 2
+        float halfScaleZ = groundPlane.transform.localScale.z * 5; // 10 (scale) / 2
 
-        for (int i = 1; i < boundary.Length - 1; i++)
-        {
-            Vector3 v0 = boundary[0];
-            Vector3 v1 = boundary[i];
-            Vector3 v2 = boundary[i + 1];
+        float randomX = Random.Range(-halfScaleX, halfScaleX);
+        float randomZ = Random.Range(-halfScaleZ, halfScaleZ);
 
-            float triangleArea = Vector3.Cross(v1 - v0, v2 - v0).magnitude * 0.5f;
-            area += triangleArea;
-
-            randomPoint += triangleArea * (v0 + v1 + v2) / 3;
-        }
-
-        randomPoint /= area;
-        return randomPoint;
+        return new Vector3(
+            groundPlane.transform.position.x + randomX,
+            groundPlane.transform.position.y,
+            groundPlane.transform.position.z + randomZ
+        );
     }
 }

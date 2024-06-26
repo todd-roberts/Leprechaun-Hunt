@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public enum GameState
 {
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     private GameState _gameState = GameState.Initial;
 
+    public static event Action<GameState> OnGameStateChanged;
+
     void Awake()
     {
         if (_instance == null)
@@ -33,7 +36,11 @@ public class GameManager : MonoBehaviour
 
     public static void SetGameState(GameState state)
     {
-        _instance._gameState = state;
+        if (_instance._gameState != state)
+        {
+            _instance._gameState = state;
+            OnGameStateChanged?.Invoke(state);
+        }
     }
 
     public static GameState GetGameState()

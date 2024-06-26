@@ -28,7 +28,7 @@ public class CharacterRig : MonoBehaviour
     private int _knockCount = 0;
     private float _knockThreshold = 0.5f; // Time within which the second knock should happen
 
-    public static float maxDistance = 1f;
+    public static float maxDistance = 2f;
     public static float doorOpenDuration = 1f; // Duration to open the door
 
     protected virtual void Awake()
