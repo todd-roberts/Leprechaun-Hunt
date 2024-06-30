@@ -10,6 +10,8 @@ public class RainbowScanner : TrackedImageHandlerBase
 
     private GameObject rainbowInstance;
 
+    private bool placed = false;
+
     public override IEnumerable<string> GetKeys()
     {
         yield return "rainbow"; // Assuming the reference image name for the rainbow is "rainbow"
@@ -19,7 +21,7 @@ public class RainbowScanner : TrackedImageHandlerBase
     {
         if (trackedImage.referenceImage.name == "rainbow" && trackedImage.trackingState == TrackingState.Tracking)
         {
-            if (ImageIsCloseToCamera(trackedImage))
+            if (ImageIsCloseToCamera(trackedImage) && !placed)
             {
                 if (rainbowInstance == null)
                 {
@@ -32,6 +34,9 @@ public class RainbowScanner : TrackedImageHandlerBase
                 }
 
                 rainbowInstance.SetActive(true);
+            } else if (rainbowInstance != null)
+            {
+                placed = true;
             }
         }
     }
