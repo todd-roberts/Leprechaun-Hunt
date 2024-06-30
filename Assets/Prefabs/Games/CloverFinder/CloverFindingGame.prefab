@@ -69,7 +69,7 @@ MonoBehaviour:
   groundPlane: {fileID: 6762613485363977312}
   minDistanceFromCamera: 0.15
   initialGroundPlaneHeight: 1.25
-  zOffset: -1
+  zOffset: -0.5
 --- !u!1 &6762613485363977312
 GameObject:
   m_ObjectHideFlags: 0

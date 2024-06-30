@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.VFX;
@@ -6,7 +7,6 @@ using UnityEngine.VFX;
 public class CharacterRig : MonoBehaviour
 {
     private CharacterSpawner _characterSpawner;
-
     private AudioSource _audio;
 
     [SerializeField]
@@ -20,6 +20,9 @@ public class CharacterRig : MonoBehaviour
 
     [SerializeField]
     private Character _character;
+
+    [SerializeField]
+    private List<GameState> excludeGameStates;
 
     private bool _doorIsOpen = false;
     private Coroutine _doorCoroutine;
@@ -46,7 +49,7 @@ public class CharacterRig : MonoBehaviour
             eventTrigger = gameObject.AddComponent<EventTrigger>();
         }
 
-        EventTrigger.Entry pointerDownEntry = new()
+        EventTrigger.Entry pointerDownEntry = new EventTrigger.Entry
         {
             eventID = EventTriggerType.PointerDown
         };
@@ -58,9 +61,16 @@ public class CharacterRig : MonoBehaviour
 
     public void OnPointerDown()
     {
-        if (_doorIsOpen) return;
+        if (_doorIsOpen)
+            return;
 
+        HandleKnock();
+    }
+
+    private void HandleKnock()
+    {
         _audio.PlayOneShot(_knockSound);
+
         _knockCount++;
 
         if (_knockCoroutine != null)
@@ -73,14 +83,32 @@ public class CharacterRig : MonoBehaviour
         if (_knockCount == 2)
         {
             _knockCount = 0;
-            if (_doorCoroutine != null)
+
+            if (excludeGameStates.Contains(GameManager.GetGameState()))
             {
-                StopCoroutine(_doorCoroutine);
+                HandleExcludedState();
             }
-            _audio.PlayOneShot(_doorOpenSound);
-            _doorCoroutine = StartCoroutine(OpenDoorGradually());
-            _doorIsOpen = true;
+            else
+            {
+                OpenDoor();
+            }
         }
+    }
+
+    private void OpenDoor()
+    {
+        if (_doorCoroutine != null)
+        {
+            StopCoroutine(_doorCoroutine);
+        }
+        _audio.PlayOneShot(_doorOpenSound);
+        _doorCoroutine = StartCoroutine(OpenDoorGradually());
+        _doorIsOpen = true;
+    }
+
+    private void HandleExcludedState()
+    {
+        // This is where we might eventually display "no one's home" or some other message
     }
 
     private IEnumerator KnockResetCoroutine()
@@ -128,7 +156,11 @@ public class CharacterRig : MonoBehaviour
 
         while (elapsedTime < doorOpenDuration)
         {
-            Quaternion slerped = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime / doorOpenDuration);
+            Quaternion slerped = Quaternion.Slerp(
+                initialRotation,
+                targetRotation,
+                elapsedTime / doorOpenDuration
+            );
             _door.transform.localRotation = slerped;
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -138,6 +170,5 @@ public class CharacterRig : MonoBehaviour
 
         _character.gameObject.SetActive(true);
         _character.Walk();
-        
     }
 }

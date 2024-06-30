@@ -1,22 +1,12 @@
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using System.Collections.Generic;
-using UnityEngine.XR.ARSubsystems;
-using System;
 using UnityEngine.VFX;
 
-public class CharacterSpawner : MonoBehaviour
+public class CharacterSpawner : TrackedImageHandlerBase
 {
-    private ARTrackedImageManager _trackedImageManager;
-
     [SerializeField]
     private List<CharacterMapping> characterMappings;
-
-    [SerializeField]
-    private float scanningRange = .5f;
-
-    [SerializeField]
-    private float smoothingSpeed = 5f; // Speed for smoothing the position and rotation updates
 
     private readonly Dictionary<string, CharacterRig> characterRigInstances = new();
 
@@ -30,7 +20,6 @@ public class CharacterSpawner : MonoBehaviour
 
     private void Awake()
     {
-        _trackedImageManager = GetComponent<ARTrackedImageManager>();
         _audio = GetComponent<AudioSource>();
         PopulateCharacterInstances();
         _poofVFX.enabled = false;
@@ -47,54 +36,41 @@ public class CharacterSpawner : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    public override IEnumerable<string> GetKeys()
     {
-        _trackedImageManager.trackedImagesChanged += OnTrackedImagesChanged;
-    }
-
-    private void OnDisable()
-    {
-        _trackedImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
-    }
-
-    private void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
-    {
-        foreach (ARTrackedImage trackedImage in eventArgs.updated)
+        foreach (var mapping in characterMappings)
         {
-            if (trackedImage.trackingState == TrackingState.Tracking)
-            {
-                HandleTrackedImage(trackedImage);
-            }
+            yield return mapping.imageName;
         }
     }
 
-    private void HandleTrackedImage(ARTrackedImage trackedImage)
+    public override void HandleTrackedImage(ARTrackedImage trackedImage)
     {
-        CharacterRig characterRig = characterRigInstances[trackedImage.referenceImage.name];
+        if (!characterRigInstances.TryGetValue(trackedImage.referenceImage.name, out CharacterRig characterRig))
+        {
+            // If the tracked image does not correspond to a character, do nothing
+            return;
+        }
 
         if (!characterRig.gameObject.activeSelf)
         {
             characterRig.transform.position = trackedImage.transform.position;
             characterRig.transform.rotation =
                 trackedImage.transform.rotation * Quaternion.Euler(-90, 0, 180);
-            if (ImageIsCloseToCamera(trackedImage)) {
+            if (ImageIsCloseToCamera(trackedImage))
+            {
                 Poof(characterRig.transform.position);
                 characterRig.gameObject.SetActive(true);
             }
         }
     }
 
-    public void Poof(Vector3 where) {
+    public void Poof(Vector3 where)
+    {
         _poofVFX.enabled = true;
         _poofVFX.transform.position = where;
         _audio.PlayOneShot(_poofSound);
         _poofVFX.Play();
-    }
-
-    private bool ImageIsCloseToCamera(ARTrackedImage trackedImage)
-    {
-        float distance = Vector3.Distance(trackedImage.transform.position, Camera.main.transform.position);
-        return distance <= scanningRange;
     }
 }
 
