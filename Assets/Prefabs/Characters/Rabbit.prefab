@@ -632,6 +632,258 @@ MonoBehaviour:
       animationName: 
       requiredProximity: 0
       choice1:
+        label: I'm Carl
+        nextDialogueKey: rabbit_2
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: rabbit_2
+      text: Hiya, Carl! Wish I had time to chat, but I've got a nasty problem to
+        deal with.
+      audioClip: {fileID: 8300000, guid: ffca3a85eb037944a9b88b35065bec37, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: rabbit_3
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: rabbit_3
+      text: It's these blasted snakes. They're crawling all over the walls. The last
+        one just about got one of my babes here.
+      audioClip: {fileID: 8300000, guid: f22819a0d3dfcba459ccf381b282279f, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: May I have your foot?
+        nextDialogueKey: rabbit_4
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: rabbit_4
+      text: You want...my foot? I need these feet. Both of them. How else am I supposed
+        to kick snakes?
+      audioClip: {fileID: 8300000, guid: a8b59b582b8134a4da9e65f09c2fdcc6, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: rabbit_5
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: rabbit_5
+      text: If you want me to hand over my foot, it's going to cost you an arm and
+        a leg.
+      audioClip: {fileID: 8300000, guid: 339e7ac73b649dd449e3e9c6cc7f0c67, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: rabbit_6
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: rabbit_6
+      text: 'I''ll tell you what: You give enough of these snakes a good whack, and
+        I''ll give it serious consideration.'
+      audioClip: {fileID: 8300000, guid: 6c4d1b7c8b4a15742aa5774a0873af89, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 1
+      progressToGameState: 4
+  - gameState: 4
+    dialogues:
+    - key: rabbit_7
+      text: Sorry love. Too many snakes still writhing about. Keep whackin' 'em,
+        and you'll have your foot.
+      audioClip: {fileID: 8300000, guid: 77dab009d79318046a1448483950d8f2, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+  - gameState: 5
+    dialogues:
+    - key: rabbit_8
+      text: You've done it, little love! Driven the snakes clear away from me and
+        my babes.
+      audioClip: {fileID: 8300000, guid: efbe82b2b9ea7db4a91703fbea4db209, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: rabbit_9
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: rabbit_9
+      text: As agreed upon, I present you with my foot.
+      audioClip: {fileID: 8300000, guid: c09f932c5b1e1ea40a1f3744aa1e5cd0, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: Are you sure?
+        nextDialogueKey: rabbit_10
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: rabbit_10
+      text: 'Oh that old thing? It''s just a prosthetic. Lost my real foot when I
+        still a baby. A snake ate it. '
+      audioClip: {fileID: 8300000, guid: b86f5072130db37409c04c501cfaa5e3, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: rabbit_11
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: Are you sure?
+        nextDialogueKey: rabbit_10
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+    - key: rabbit_11
+      text: I hope it's OK it's not a real foot?
+      audioClip: {fileID: 8300000, guid: 2535c72841aac16438c2178e5caf798a, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: Are you sure?
+        nextDialogueKey: rabbit_10
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 1
+      progressToGameState: 6
+  - gameState: 6
+    dialogues:
+    - key: rabbit_12
+      text: Thank you again for helping me and my babes. We won't be forgetting it
+        soon.
+      audioClip: {fileID: 8300000, guid: 6dc53f031676f3048bbdd0ec84332e39, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+  - gameState: 7
+    dialogues:
+    - key: rabbit_12
+      text: Thank you again for helping me and my babes. We won't be forgetting it
+        soon.
+      audioClip: {fileID: 8300000, guid: 6dc53f031676f3048bbdd0ec84332e39, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+  - gameState: 8
+    dialogues:
+    - key: rabbit_12
+      text: Thank you again for helping me and my babes. We won't be forgetting it
+        soon.
+      audioClip: {fileID: 8300000, guid: 6dc53f031676f3048bbdd0ec84332e39, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+  - gameState: 9
+    dialogues:
+    - key: rabbit_12
+      text: Thank you again for helping me and my babes. We won't be forgetting it
+        soon.
+      audioClip: {fileID: 8300000, guid: 6dc53f031676f3048bbdd0ec84332e39, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+  - gameState: 10
+    dialogues:
+    - key: rabbit_12
+      text: Thank you again for helping me and my babes. We won't be forgetting it
+        soon.
+      audioClip: {fileID: 8300000, guid: 6dc53f031676f3048bbdd0ec84332e39, type: 3}
+      isCheckpoint: 1
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
         label: 
         nextDialogueKey: 
       choice2:

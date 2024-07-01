@@ -6,7 +6,7 @@ public abstract class CharacterState
     protected Character _character;
     protected CharacterStateMachine _stateMachine;
 
-    public void Initialize(Character character, CharacterStateMachine stateMachine)
+    public virtual void Initialize(Character character, CharacterStateMachine stateMachine)
     {
         _character = character;
         _stateMachine = stateMachine;

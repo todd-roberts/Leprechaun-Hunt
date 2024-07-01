@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.Rendering.Universal;
 
 public abstract class Character : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public abstract class Character : MonoBehaviour
     private List<GameStateDialogue> gameStateDialogues;
 
     private Dictionary<GameState, DialogueSet> _dialogues;
+
+    private bool _detached = false;
 
     protected virtual void Awake()
     {
@@ -93,5 +96,19 @@ public abstract class Character : MonoBehaviour
 
     public DialogueSet GetDialogueSet() => _dialogues[GameManager.GetGameState()];
 
+    private CharacterRig GetCharacterRig() => transform.parent.parent.GetComponent<CharacterRig>();
+
     public void Idle() => _stateMachine.SetState(new IdleState());
+
+    public bool IsDetached() => _detached;
+
+    public void Detach() {
+        _detached = true;
+
+        CharacterRig characterRig = GetCharacterRig();
+        
+        transform.parent = null;
+        
+        characterRig.Despawn();
+    }
 }

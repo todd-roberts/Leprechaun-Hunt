@@ -822,6 +822,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2866746888641229861}
     m_Modifications:
+    - target: {fileID: 5894243288390796162, guid: 65ca334bfd1d98348ae05250ecd0d97c,
+        type: 3}
+      propertyPath: gameStateDialogues.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894243288390796162, guid: 65ca334bfd1d98348ae05250ecd0d97c,
+        type: 3}
+      propertyPath: gameStateDialogues.Array.data[8].gameState
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894243288390796162, guid: 65ca334bfd1d98348ae05250ecd0d97c,
+        type: 3}
+      propertyPath: gameStateDialogues.Array.data[8].dialogues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894243288390796162, guid: 65ca334bfd1d98348ae05250ecd0d97c,
+        type: 3}
+      propertyPath: gameStateDialogues.Array.data[8].dialogues.Array.data[0].key
+      value: rabbit_12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894243288390796162, guid: 65ca334bfd1d98348ae05250ecd0d97c,
+        type: 3}
+      propertyPath: gameStateDialogues.Array.data[8].dialogues.Array.data[0].text
+      value: Thank you again for helping me and my babes. We won't be forgetting
+        it soon.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894243288390796162, guid: 65ca334bfd1d98348ae05250ecd0d97c,
+        type: 3}
+      propertyPath: gameStateDialogues.Array.data[8].dialogues.Array.data[0].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6dc53f031676f3048bbdd0ec84332e39, type: 3}
+    - target: {fileID: 5894243288390796162, guid: 65ca334bfd1d98348ae05250ecd0d97c,
+        type: 3}
+      propertyPath: gameStateDialogues.Array.data[8].dialogues.Array.data[0].isCheckpoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5934268702522215080, guid: 65ca334bfd1d98348ae05250ecd0d97c,
         type: 3}
       propertyPath: m_LocalPosition.x

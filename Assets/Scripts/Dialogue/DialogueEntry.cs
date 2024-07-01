@@ -10,10 +10,9 @@ public class DialogueEntry
     public bool isCheckpoint;
     public string nextDialogueKey;
 
-     public bool PointsToNextDialogue()
+    public bool PointsToNextDialogue()
     {
-        return nextDialogueKey != null &&
-            nextDialogueKey.Trim() != "";
+        return nextDialogueKey != null && nextDialogueKey.Trim() != "";
     }
 
     public string animationName;
@@ -28,4 +27,6 @@ public class DialogueEntry
 
     public bool shouldProgressGameState;
     public GameState progressToGameState;
+
+    public bool isTrigger;
 }

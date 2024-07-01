@@ -63,6 +63,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Leprechaun
       objectReference: {fileID: 0}
+    - target: {fileID: 6364839573607694289, guid: 7760d47c46230c443ba30818ba4e84ab,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364839573607694289, guid: 7760d47c46230c443ba30818ba4e84ab,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364839573607694289, guid: 7760d47c46230c443ba30818ba4e84ab,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -245,6 +260,7 @@ MonoBehaviour:
   _doorOpenSound: {fileID: 8300000, guid: c6fca67ff59624e46886b35a543484a8, type: 3}
   _knockSound: {fileID: 8300000, guid: b49458a88a9dd52459627e93a983d909, type: 3}
   _character: {fileID: 2141213047285742165}
+  excludeGameStates: 090000000a0000000b000000
 --- !u!82 &7019664637112923911
 AudioSource:
   m_ObjectHideFlags: 0

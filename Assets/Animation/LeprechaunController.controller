@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lep_Hit_from_front
+  m_Name: Touched
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -945,10 +945,10 @@ AnimatorStateMachine:
     m_Position: {x: 300, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -9117948223424209611}
-    m_Position: {x: 520, y: -320, z: 0}
+    m_Position: {x: -10, y: -300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7985849763978966056}
-    m_Position: {x: 30, y: -70, z: 0}
+    m_Position: {x: -260, y: -450, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4716292479593465239}
     m_Position: {x: 550, y: -100, z: 0}

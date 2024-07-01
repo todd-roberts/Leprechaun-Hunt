@@ -58,6 +58,11 @@ public class DialogueManager : MonoBehaviour
 
         _audio.PlayOneShot(dialogue.audioClip);
 
+        if (dialogue.isTrigger)
+        {
+            GameManager.TriggerDialogueCallback(dialogue.key);
+        }
+
         yield return new WaitUntil(() => IsDialogueComplete());
 
         if (dialogue.HasChoices())

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public enum GameState
 {
@@ -7,11 +8,14 @@ public enum GameState
     FindFourLeafClover,
     FourLeafCloverFound,
     FindRabbitsFoot,
+    SnakeGameStarted,
+    SnakeGameWon,
     RabbitsFootFound,
     FindHorseShoe,
-    HorseShoeFound,
+    HorseshoeFound,
+    CatchLeprechaun,
     LeprechaunCaught,
-    PotOfGoldFound,
+    RainbowVisionGranted
 }
 
 public class GameManager : MonoBehaviour
@@ -21,12 +25,15 @@ public class GameManager : MonoBehaviour
 
     public static event Action<GameState> OnGameStateChanged;
 
+    private Dictionary<string, Action> _dialogueCallbacks;
+
     void Awake()
     {
         if (_instance == null)
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            _dialogueCallbacks = new Dictionary<string, Action>();
         }
         else
         {
@@ -46,5 +53,18 @@ public class GameManager : MonoBehaviour
     public static GameState GetGameState()
     {
         return _instance._gameState;
+    }
+
+    public static void RegisterDialogueCallback(string key, Action callback)
+    {
+        _instance._dialogueCallbacks[key] = callback;
+    }
+
+    public static void TriggerDialogueCallback(string key)
+    {
+        if (_instance._dialogueCallbacks.TryGetValue(key, out Action callback))
+        {
+            callback?.Invoke();
+        }
     }
 }

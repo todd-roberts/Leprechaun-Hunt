@@ -136,15 +136,25 @@ public class CharacterRig : MonoBehaviour
         }
     }
 
-    private void Despawn()
+    public void Despawn()
     {
-        DialogueManager.Despawn();
         _characterSpawner.Poof(transform.position);
         _doorIsOpen = false;
         _door.transform.localRotation = Quaternion.identity;
+
+        if (!_character.IsDetached()) {
+           DespawnCharacter();
+        }
+        
+        gameObject.SetActive(false);
+    }
+
+    public bool CharacterDetached() => _character.IsDetached();
+
+    private void DespawnCharacter() {
+         DialogueManager.Despawn();
         _character.ResetPosition();
         _character.gameObject.SetActive(false);
-        gameObject.SetActive(false);
     }
 
     private IEnumerator OpenDoorGradually()

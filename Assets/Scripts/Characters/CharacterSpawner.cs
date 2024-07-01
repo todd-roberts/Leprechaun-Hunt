@@ -52,7 +52,7 @@ public class CharacterSpawner : TrackedImageHandlerBase
             return;
         }
 
-        if (!characterRig.gameObject.activeSelf)
+        if (!characterRig.gameObject.activeSelf && !characterRig.CharacterDetached())
         {
             characterRig.transform.position = trackedImage.transform.position;
             characterRig.transform.rotation =
