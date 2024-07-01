@@ -117,9 +117,10 @@ public class DialogueManager : MonoBehaviour
 
         HideUI();
 
+        _currentCharacter.Idle();
+        
         UpdateGameState();
 
-        _currentCharacter.Idle();
     }
 
     private void UpdateGameState() {

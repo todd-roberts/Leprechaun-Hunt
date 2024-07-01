@@ -5,11 +5,20 @@ using UnityEngine.UI;
 
 public class DialogueUI : MonoBehaviour
 {
-    [SerializeField] private TMP_Text dialogueText;
-    [SerializeField] private TMP_Text speakerNameText;
-    [SerializeField] private Button nextButton; // Button to navigate to the next dialogue
-    [SerializeField] private Button choiceButton1;
-    [SerializeField] private Button choiceButton2;
+    [SerializeField]
+    private TMP_Text dialogueText;
+
+    [SerializeField]
+    private TMP_Text speakerNameText;
+
+    [SerializeField]
+    private Button nextButton; // Button to navigate to the next dialogue
+
+    [SerializeField]
+    private Button choiceButton1;
+
+    [SerializeField]
+    private Button choiceButton2;
 
     private bool _isTextComplete;
 
@@ -18,7 +27,8 @@ public class DialogueUI : MonoBehaviour
         HideButtons();
     }
 
-    private void HideButtons() {
+    private void HideButtons()
+    {
         HideNextButton();
         HideChoices();
     }
@@ -29,7 +39,10 @@ public class DialogueUI : MonoBehaviour
 
         speakerNameText.text = speakerName;
 
-        float typingSpeed = dialogueEntry.audioClip != null ? Mathf.Max(dialogueEntry.text.Length / dialogueEntry.audioClip.length, 25f) : 25f;
+        float typingSpeed =
+            dialogueEntry.audioClip != null
+                ? Mathf.Max(dialogueEntry.text.Length / dialogueEntry.audioClip.length, 25f)
+                : 25f;
         _isTextComplete = false;
 
         StartCoroutine(TypeOutText(dialogueEntry.text, typingSpeed));
@@ -71,18 +84,15 @@ public class DialogueUI : MonoBehaviour
 
     public void ShowChoices(DialogueEntry dialogue)
     {
-        if (dialogue.choice1 != null)
-        {
-            ShowChoice(dialogue.choice1, choiceButton1);
-        }
+        ShowChoice(dialogue.choice1, choiceButton1);
 
-        if (dialogue.choice2 != null)
+        if (dialogue.HasChoice2())
         {
             ShowChoice(dialogue.choice2, choiceButton2);
         }
     }
 
-    private void ShowChoice (DialogueChoice choice, Button button)
+    private void ShowChoice(DialogueChoice choice, Button button)
     {
         button.gameObject.SetActive(true);
         button.transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = choice.label;
