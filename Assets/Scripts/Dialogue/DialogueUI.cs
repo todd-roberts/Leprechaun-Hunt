@@ -39,24 +39,25 @@ public class DialogueUI : MonoBehaviour
 
         speakerNameText.text = speakerName;
 
-        float typingSpeed =
-            dialogueEntry.audioClip != null
-                ? Mathf.Max(dialogueEntry.text.Length / dialogueEntry.audioClip.length, 25f)
-                : 25f;
-        _isTextComplete = false;
-
-        StartCoroutine(TypeOutText(dialogueEntry.text, typingSpeed));
+        StartCoroutine(TypeOutText(dialogueEntry));
     }
 
-    private IEnumerator TypeOutText(string text, float typingSpeed)
+    private IEnumerator TypeOutText(DialogueEntry dialogue)
     {
         dialogueText.text = "";
-        float delay = 1 / typingSpeed;
 
-        foreach (char character in text)
+        int lengthOfTextWithoutSpaces = dialogue.text.Replace(" ", "").Length;
+
+        string[] words = dialogue.text.Split(' ');
+
+        foreach (string word in words)
         {
-            dialogueText.text += character;
-            yield return new WaitForSeconds(delay);
+            string newText = dialogueText.text + word + " ";
+            dialogueText.text = newText;
+
+            float ratio = word.Length / (float)lengthOfTextWithoutSpaces;
+
+            yield return new WaitForSeconds(ratio * dialogue.audioClip.length);
         }
 
         _isTextComplete = true;

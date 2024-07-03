@@ -327,8 +327,8 @@ MonoBehaviour:
       progressToGameState: 0
       isTrigger: 0
     - key: leprechaun_6
-      text: Carl. You're Carl Lewis Roberts of Conrow Drive in Manhattan, Kansas.
-        Is that about right?
+      text: Carl. You're Carl Lewis Roberts. Carl Lewis Roberts of Conrow Drive in
+        Manhattan, Kansas. Is that about right?
       audioClip: {fileID: 8300000, guid: d5ec029a1e7b23743bf80d4f32abf54b, type: 3}
       isCheckpoint: 0
       nextDialogueKey: 

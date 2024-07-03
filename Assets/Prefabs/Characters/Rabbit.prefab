@@ -783,7 +783,7 @@ MonoBehaviour:
       text: 'Oh that old thing? It''s just a prosthetic. Lost my real foot when I
         still a baby. A snake ate it. '
       audioClip: {fileID: 8300000, guid: b86f5072130db37409c04c501cfaa5e3, type: 3}
-      isCheckpoint: 1
+      isCheckpoint: 0
       nextDialogueKey: rabbit_11
       animationName: 
       requiredProximity: 0
@@ -799,7 +799,7 @@ MonoBehaviour:
     - key: rabbit_11
       text: I hope it's OK it's not a real foot?
       audioClip: {fileID: 8300000, guid: 2535c72841aac16438c2178e5caf798a, type: 3}
-      isCheckpoint: 1
+      isCheckpoint: 0
       nextDialogueKey: 
       animationName: 
       requiredProximity: 0
