@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
-using UnityEngine.Rendering.Universal;
 
 public abstract class Character : MonoBehaviour
 {
@@ -28,7 +27,7 @@ public abstract class Character : MonoBehaviour
 
         SetupOnClickHandler();
         InitializeDialogues();
-        ResetPosition();
+        ResetLocalTransform();
 
         OnAwake();
     }
@@ -61,9 +60,10 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    public void ResetPosition()
+    public void ResetLocalTransform()
     {
         transform.localPosition = new Vector3(0, 0, -walkDistance);
+        transform.localRotation = Quaternion.identity;
     }
 
     private void Update()
@@ -102,13 +102,14 @@ public abstract class Character : MonoBehaviour
 
     public bool IsDetached() => _detached;
 
-    public void Detach() {
+    public void Detach()
+    {
         _detached = true;
 
         CharacterRig characterRig = GetCharacterRig();
-        
+
         transform.parent = null;
-        
+
         characterRig.Despawn();
     }
 }

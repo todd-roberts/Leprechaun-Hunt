@@ -9,7 +9,7 @@ public class WalkingState : CharacterState
     public override void Enter()
     {
         _elapsedTime = 0;
-        _character.ResetPosition();
+        _character.ResetLocalTransform();
         _initialPosition = _character.transform.localPosition;
         _targetPosition = _character.transform.localPosition + new Vector3(0, 0, _character.GetWalkDistance());
     
