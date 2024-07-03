@@ -697,7 +697,7 @@ MonoBehaviour:
       isTrigger: 0
     - key: leprechaun_25
       text: So that's it. Bring me the three lucky trinkets, and I'll use their magic
-        to grant you secret RAINBOW VISION.
+        to grant you SECRET RAINBOW VISION.
       audioClip: {fileID: 8300000, guid: 5631f0f0b4a2b6f428a88f8dcb4331ea, type: 3}
       isCheckpoint: 1
       nextDialogueKey: leprechaun_26
