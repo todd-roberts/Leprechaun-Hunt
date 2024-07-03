@@ -223,7 +223,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lep_Ecstatic
+  m_Name: Power
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -412,7 +412,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lep_yawn
+  m_Name: Unimpressed
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -987,7 +987,7 @@ AnimatorStateMachine:
     m_Position: {x: 800, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6683242927464382027}
-    m_Position: {x: -20, y: 140, z: 0}
+    m_Position: {x: -310, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5482502426001616784}
     m_Position: {x: 810, y: 360, z: 0}
@@ -1008,7 +1008,7 @@ AnimatorStateMachine:
     m_Position: {x: 590, y: 530, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1197574668572439875}
-    m_Position: {x: 790, y: 520, z: 0}
+    m_Position: {x: 860, y: 540, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7869609779973175311}
     m_Position: {x: 340, y: 630, z: 0}

@@ -917,12 +917,12 @@ MonoBehaviour:
         NOW!
       audioClip: {fileID: 8300000, guid: 9896ff41bd23f604995159690f0b300c, type: 3}
       isCheckpoint: 0
-      nextDialogueKey: leprechaun_36
-      animationName: 
+      nextDialogueKey: 
+      animationName: Celebrate
       requiredProximity: 0
       choice1:
-        label: 
-        nextDialogueKey: 
+        label: Okay...
+        nextDialogueKey: leprechaun_36
       choice2:
         label: 
         nextDialogueKey: 
@@ -934,7 +934,7 @@ MonoBehaviour:
       audioClip: {fileID: 8300000, guid: 8129d53ff24d85545a0fbe18d2867221, type: 3}
       isCheckpoint: 1
       nextDialogueKey: leprechaun_37
-      animationName: 
+      animationName: Power
       requiredProximity: 0
       choice1:
         label: 
@@ -1030,16 +1030,103 @@ MonoBehaviour:
       shouldProgressGameState: 1
       progressToGameState: 9
       isTrigger: 0
+  - gameState: 10
+    dialogues:
+    - key: leprechaun_42
+      text: NOOOOOO!!!! You caught me! How is this possible?
+      audioClip: {fileID: 8300000, guid: 072e3fef475220a4f8bfee2a200012d4, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_43
+      animationName: Anger
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+      isTrigger: 0
+    - key: leprechaun_43
+      text: I calculated that it would take you a BILLION years to catch me. And
+        that's if you were lucky. And you're not lucky!
+      audioClip: {fileID: 8300000, guid: edfa7faf0a6ba4d4b8b367ef4ab71e02, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_44
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+      isTrigger: 0
+    - key: leprechaun_44
+      text: People always say 'It's better to be lucky than good.' Clearly, they
+        are wrong. You are good at catching leprechauns.
+      audioClip: {fileID: 8300000, guid: d878918e984775943b23db963ec4f189, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_45
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+      isTrigger: 0
+    - key: leprechaun_45
+      text: Very well--I have no choice. Close your eyes little lad.
+      audioClip: {fileID: 8300000, guid: d1bf8bba11195984dbddb83b5e02f316, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: leprechaun_46
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 0
+      progressToGameState: 0
+      isTrigger: 1
+    - key: leprechaun_46
+      text: 'Well, congratulations. You have SECRET RAINBOW VISION now. Find the
+        end of the rainbow. Find the gold. It''s as easy as that. '
+      audioClip: {fileID: 8300000, guid: 5833c58a424949e47b18be2a83b0e4af, type: 3}
+      isCheckpoint: 0
+      nextDialogueKey: 
+      animationName: 
+      requiredProximity: 0
+      choice1:
+        label: 
+        nextDialogueKey: 
+      choice2:
+        label: 
+        nextDialogueKey: 
+      shouldProgressGameState: 1
+      progressToGameState: 11
+      isTrigger: 0
   hoverSpeed: 3
   hoverHeight: 0.1
-  teleportDelay: 15
+  teleportDelay: 10
   teleportDistance: 1
-  requiredTouches: 10
+  requiredTouches: 5
   touchDistance: 0.5
   magicOrb: {fileID: 6660568049285293006}
   touchCounter: 0
   teleportSound: {fileID: 8300000, guid: 0168bce9796b3c44eaaf9d1577390038, type: 3}
   touchedSound: {fileID: 8300000, guid: 2c6421ee2e3f5734cb3a332f197b14fd, type: 3}
+  rainbowVisionGrantedSound: {fileID: 8300000, guid: a86229915bae206489e4b83f095164ed,
+    type: 3}
 --- !u!95 &6555768264951065628
 Animator:
   serializedVersion: 5

@@ -5,7 +5,7 @@ public class CloverInspector : MonoBehaviour
 {
     public GameObject threeLeafCloverInspect;
     public GameObject fourLeafCloverInspect;
-    public AudioClip successClip;
+
     public AudioClip failureClip;
     public float inspectDuration = 2.0f; // Duration of the inspection
     private AudioSource _audio;
@@ -38,7 +38,7 @@ public class CloverInspector : MonoBehaviour
 
         if (isFourLeaf)
         {
-            PlaySuccessAudio();
+            GameManager.PlaySuccessSound();
         }
         else
         {
@@ -53,11 +53,6 @@ public class CloverInspector : MonoBehaviour
         yield return new WaitForSeconds(inspectDuration);
         gameObject.SetActive(false);
         isInspecting = false;
-    }
-
-    public void PlaySuccessAudio()
-    {
-        _audio.PlayOneShot(successClip);
     }
 
     public void PlayFailureAudio()

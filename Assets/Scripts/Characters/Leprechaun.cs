@@ -1,11 +1,13 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Leprechaun : Character
 {
     [SerializeField]
     private float hoverSpeed = 2f; // Speed of bobbing
 
-    [SerializeField ]
+    [SerializeField]
     private float hoverHeight = 0.05f; // Height of bobbing
 
     [SerializeField]
@@ -33,19 +35,33 @@ public class Leprechaun : Character
     [SerializeField]
     private AudioClip touchedSound; // Sound effect for being touched
 
+    [SerializeField]
+    private AudioClip rainbowVisionGrantedSound; 
+
     protected override void OnAwake()
     {
         _audio = GetComponent<AudioSource>();
         GameManager.OnGameStateChanged += HandleGameStateChanged;
         GameManager.RegisterDialogueCallback("leprechaun_36", Hover);
+        GameManager.RegisterDialogueCallback("leprechaun_45", GrantRainbowVision);
     }
 
     private void HandleGameStateChanged(GameState state)
     {
         if (state == GameState.CatchLeprechaun)
         {
-            _stateMachine.SetState(new WizardState());
+            _stateMachine.SetState(new TeleportingState());
         }
+        else if (state == GameState.RainbowVisionGranted)
+        {
+            Goodbye();
+        }
+    }
+
+    public void Goodbye()
+    {
+        FindObjectOfType<CharacterSpawner>().Poof(transform.position);
+        Destroy(gameObject);
     }
 
     private void OnDestroy()
@@ -53,15 +69,66 @@ public class Leprechaun : Character
         GameManager.OnGameStateChanged -= HandleGameStateChanged;
     }
 
-    public void Hover()
+    public IEnumerator Hover()
     {
         _stateMachine.SetState(new HoveringState());
+        yield return null;
+    }
+
+    public IEnumerator GrantRainbowVision()
+    {
+        GameObject rainbowVision = GameManager.GetRainbowVisionPanel();
+
+        if (rainbowVision != null)
+        {
+            rainbowVision.SetActive(true);
+
+            Image rainbowVisionImage = rainbowVision.GetComponent<Image>();
+
+            // Fade in the rainbow vision
+            yield return StartCoroutine(FadeImage(rainbowVisionImage, 0f, 1f, 1f));
+
+            // Play the sound effect for granting rainbow vision
+            _audio.PlayOneShot(rainbowVisionGrantedSound);
+
+            // Hold the panel visible for a moment
+            yield return new WaitForSeconds(2.5f);
+
+            // Fade out the rainbow vision
+            yield return StartCoroutine(FadeImage(rainbowVisionImage, 1f, 0f, 1f));
+
+            // Hide the panel after fading out
+            rainbowVision.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("RainbowVision panel is not assigned in the GameManager.");
+        }
+
+        yield return null;
+    }
+
+    private IEnumerator FadeImage(Image image, float startAlpha, float endAlpha, float duration)
+    {
+        float elapsedTime = 0f;
+        Color color = image.color;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / duration);
+            image.color = color;
+            yield return null;
+        }
+
+        color.a = endAlpha;
+        image.color = color;
     }
 
     public GameObject GetMagicOrb()
     {
         return magicOrb;
-    }   
+    }
 
     public void BobUpAndDown()
     {
@@ -75,7 +142,41 @@ public class Leprechaun : Character
         _audio.PlayOneShot(teleportSound);
     }
 
-    public void PlayTouchedSound() {
+    public void PlayTouchedSound()
+    {
         _audio.PlayOneShot(touchedSound);
+    }
+
+    public void MoveToRelativePosition(Vector3 relativePosition)
+    {
+        Vector3 cameraForward = Camera.main.transform.forward;
+        cameraForward.y = 0; // Keep the forward direction horizontal
+
+        Vector3 right = Camera.main.transform.right;
+        right.y = 0; // Keep the right direction horizontal
+
+        Vector3 newPosition = Camera.main.transform.position +
+                              (right * relativePosition.x + cameraForward * relativePosition.z) * teleportDistance;
+        newPosition.y = Camera.main.transform.position.y;
+
+        transform.position = newPosition;
+    }
+
+    public bool IsPlayerClose()
+    {
+        float distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+        return distance <= touchDistance;
+    }
+
+    public Vector3 GetRandomRelativePosition(Vector3[] relativePositions, ref int lastPositionIndex)
+    {
+        int newPositionIndex;
+        do
+        {
+            newPositionIndex = Random.Range(0, relativePositions.Length);
+        } while (newPositionIndex == lastPositionIndex);
+
+        lastPositionIndex = newPositionIndex;
+        return relativePositions[newPositionIndex];
     }
 }

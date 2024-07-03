@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 public enum GameState
 {
@@ -21,11 +22,20 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-    private GameState _gameState = GameState.Initial;
+
+    [SerializeField]
+    private GameState _gameState;
 
     public static event Action<GameState> OnGameStateChanged;
 
-    private Dictionary<string, Action> _dialogueCallbacks;
+    private Dictionary<string, Func<IEnumerator>> _dialogueCallbacks;
+
+    public GameObject rainbowVisionPanel;
+
+    private AudioSource _audio;
+
+    [SerializeField]
+    private AudioClip _successSound;
 
     void Awake()
     {
@@ -33,12 +43,17 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
-            _dialogueCallbacks = new Dictionary<string, Action>();
+            _dialogueCallbacks = new Dictionary<string, Func<IEnumerator>>();
+            _audio = GetComponent<AudioSource>();
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    void Start() {
+        SetGameState(_gameState);
     }
 
     public static void SetGameState(GameState state)
@@ -55,16 +70,29 @@ public class GameManager : MonoBehaviour
         return _instance._gameState;
     }
 
-    public static void RegisterDialogueCallback(string key, Action callback)
+    public static void RegisterDialogueCallback(string key, Func<IEnumerator> callback)
     {
         _instance._dialogueCallbacks[key] = callback;
     }
 
-    public static void TriggerDialogueCallback(string key)
+    public static IEnumerator TriggerDialogueCallback(string key)
     {
-        if (_instance._dialogueCallbacks.TryGetValue(key, out Action callback))
+        if (_instance._dialogueCallbacks.TryGetValue(key, out Func<IEnumerator> callback))
         {
-            callback?.Invoke();
+            if (callback != null)
+            {
+                yield return _instance.StartCoroutine(callback());
+            }
         }
+    }
+
+    public static GameObject GetRainbowVisionPanel()
+    {
+        return _instance.rainbowVisionPanel;
+    }
+
+    public static void PlaySuccessSound()
+    {
+        _instance._audio.PlayOneShot(_instance._successSound);
     }
 }

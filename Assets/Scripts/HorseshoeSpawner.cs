@@ -8,36 +8,22 @@ public class HorseshoeSpawner : TrackedImageHandlerBase
     [SerializeField]
     private GameObject horseshoePrefab;
 
-    [SerializeField]
-    private AudioClip successTone;
-
-    private AudioSource _audioSource;
     private GameObject horseshoeInstance;
 
     private bool placed = false;
 
-    private void Awake()
-    {
-        _audioSource = GetComponent<AudioSource>();
-
-        if (horseshoePrefab == null)
-        {
-            Debug.LogError("Horseshoe Prefab is not assigned in the inspector.");
-        }
-
-        if (successTone == null)
-        {
-            Debug.LogError("Success Tone is not assigned in the inspector.");
-        }
-    }
-
     public override IEnumerable<string> GetKeys()
     {
-        yield return "horseshoe"; // Assuming the reference image name for the horseshoe is "horseshoe"
+        yield return "horseshoe"; 
     }
 
     public override void HandleTrackedImage(ARTrackedImage trackedImage)
     {
+        if (GameManager.GetGameState() != GameState.FindHorseShoe)
+        {
+            return;
+        }
+        
         if (trackedImage.referenceImage.name == "horseshoe")
         {
             if (ImageIsCloseToCamera(trackedImage))
@@ -47,7 +33,7 @@ public class HorseshoeSpawner : TrackedImageHandlerBase
                     horseshoeInstance = Instantiate(horseshoePrefab, trackedImage.transform.position, trackedImage.transform.rotation);
                     placed = true;
                     GameManager.SetGameState(GameState.HorseshoeFound);
-                    PlaySuccessTone();
+                    GameManager.PlaySuccessSound();
                     StartCoroutine(DestroyAfterDelay());
                 }
                 else
@@ -57,11 +43,6 @@ public class HorseshoeSpawner : TrackedImageHandlerBase
                 }
             }
         }
-    }
-
-    private void PlaySuccessTone()
-    {
-        _audioSource.PlayOneShot(successTone);
     }
 
     private IEnumerator DestroyAfterDelay()

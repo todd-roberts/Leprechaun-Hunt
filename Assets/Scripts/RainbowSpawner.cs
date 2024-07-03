@@ -7,6 +7,10 @@ public class RainbowScanner : TrackedImageHandlerBase
     [SerializeField]
     private GameObject rainbowPrefab;
 
+    private AudioSource _audio;
+    [SerializeField]
+    private AudioClip spawnSound;
+
     private GameObject rainbowInstance;
 
     private bool placed = false;
@@ -14,6 +18,10 @@ public class RainbowScanner : TrackedImageHandlerBase
     public override IEnumerable<string> GetKeys()
     {
         yield return "rainbow"; 
+    }
+
+    private void Awake() {
+        _audio = GetComponent<AudioSource>();
     }
 
     public override void HandleTrackedImage(ARTrackedImage trackedImage)
@@ -34,6 +42,8 @@ public class RainbowScanner : TrackedImageHandlerBase
         {
             if (rainbowInstance == null)
             {
+                _audio.PlayOneShot(spawnSound);
+                
                 rainbowInstance = Instantiate(
                     rainbowPrefab,
                     trackedImage.transform.position,
