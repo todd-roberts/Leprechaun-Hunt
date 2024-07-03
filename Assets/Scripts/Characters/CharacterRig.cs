@@ -142,9 +142,11 @@ public class CharacterRig : MonoBehaviour
         _doorIsOpen = false;
         _door.transform.localRotation = Quaternion.identity;
 
-        _character.gameObject.SetActive(false);
+        if (!CharacterDetached()) {
+            _character.gameObject.SetActive(false);
+            DialogueManager.Despawn();
+        }
 
-        DialogueManager.Despawn();
         
         gameObject.SetActive(false);
     }

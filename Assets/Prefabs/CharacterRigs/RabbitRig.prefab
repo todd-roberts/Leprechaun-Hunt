@@ -610,7 +610,7 @@ MonoBehaviour:
   snakePrefab: {fileID: 657680660009767545, guid: 5cb6c9b08d944ce488733ed40b98378a,
     type: 3}
   snakesPerPlane: 5
-  requiredSnakeKills: 10
+  requiredSnakeKills: 25
   wallPlanes:
   - {fileID: 5060437418243264480}
   - {fileID: 671419190080765190}

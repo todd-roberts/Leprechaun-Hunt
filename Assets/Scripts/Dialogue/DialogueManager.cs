@@ -58,7 +58,19 @@ public class DialogueManager : MonoBehaviour
 
         _audio.PlayOneShot(dialogue.audioClip);
 
+        Leprechaun leprechaun = _currentCharacter.GetComponent<Leprechaun>();
+
+        if (leprechaun != null)
+        {
+            leprechaun.SetTalking(true);
+        }
+
         yield return new WaitUntil(() => IsDialogueComplete());
+
+        if (leprechaun != null)
+        {
+            leprechaun.SetTalking(false);
+        }
 
         if (dialogue.isTrigger)
         {

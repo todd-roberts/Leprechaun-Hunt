@@ -179,4 +179,13 @@ public class Leprechaun : Character
         lastPositionIndex = newPositionIndex;
         return relativePositions[newPositionIndex];
     }
+
+    public void SetTalking(bool isTalking)
+    {
+        if (_animator != null)
+        {
+            float weight = isTalking ? 1.0f : 0.0f;
+            _animator.SetLayerWeight(1, weight);
+        }
+    }
 }

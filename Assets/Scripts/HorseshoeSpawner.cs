@@ -12,6 +12,8 @@ public class HorseshoeSpawner : TrackedImageHandlerBase
 
     private bool placed = false;
 
+    public bool allowFastForward = false;
+
     public override IEnumerable<string> GetKeys()
     {
         yield return "horseshoe"; 
@@ -19,7 +21,7 @@ public class HorseshoeSpawner : TrackedImageHandlerBase
 
     public override void HandleTrackedImage(ARTrackedImage trackedImage)
     {
-        if (GameManager.GetGameState() != GameState.FindHorseShoe)
+        if (!allowFastForward && GameManager.GetGameState() != GameState.FindHorseShoe)
         {
             return;
         }

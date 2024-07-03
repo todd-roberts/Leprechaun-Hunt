@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f53c5c054677c4099c3f5a5b946fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   hitSound: {fileID: 8300000, guid: e777971927adf264b8bc921905a55a19, type: 3}
   deathSound: {fileID: 8300000, guid: d077b493fbe1c424399d19407852cfe7, type: 3}
   moveSpeed: 0.5

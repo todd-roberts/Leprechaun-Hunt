@@ -1092,6 +1092,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6136567411442498528, guid: 4427d2a30c61d844ca85c320e090f5e9,
         type: 3}
+    - target: {fileID: 7613175140223346765, guid: 3ace82aa4b637c34bbef47272ce7c71d,
+        type: 3}
+      propertyPath: allowFastForward
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8200829498403445545, guid: 3ace82aa4b637c34bbef47272ce7c71d,
         type: 3}
       propertyPath: spawnSound

@@ -7,7 +7,7 @@ public class Snake : MonoBehaviour
     private Animator _animator;
     private AudioSource _audio;
 
-    public int health = 3; // Snake's health
+    public int health = 1; // Snake's health
 
     [SerializeField]
     private AudioClip hitSound; // Sound played when snake is hit
