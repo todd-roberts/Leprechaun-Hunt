@@ -63,7 +63,7 @@ public abstract class Character : MonoBehaviour
 
     public void ResetPosition()
     {
-        transform.position = transform.parent.position - transform.forward * walkDistance;
+        transform.localPosition = new Vector3(0, 0, -walkDistance);
     }
 
     private void Update()

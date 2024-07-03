@@ -142,20 +142,14 @@ public class CharacterRig : MonoBehaviour
         _doorIsOpen = false;
         _door.transform.localRotation = Quaternion.identity;
 
-        if (!_character.IsDetached()) {
-           DespawnCharacter();
-        }
+        _character.gameObject.SetActive(false);
+
+        DialogueManager.Despawn();
         
         gameObject.SetActive(false);
     }
 
     public bool CharacterDetached() => _character.IsDetached();
-
-    private void DespawnCharacter() {
-         DialogueManager.Despawn();
-        _character.ResetPosition();
-        _character.gameObject.SetActive(false);
-    }
 
     private IEnumerator OpenDoorGradually()
     {
@@ -179,6 +173,7 @@ public class CharacterRig : MonoBehaviour
         _door.transform.localRotation = targetRotation;
 
         _character.gameObject.SetActive(true);
+        
         _character.Walk();
     }
 }
