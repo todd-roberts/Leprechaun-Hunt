@@ -15,32 +15,17 @@ public class SnakeGame : MonoBehaviour
     private Transform[] wallPlanes; // Assign the wall planes in the inspector
 
     private int snakeKills = 0;
-    private bool started = false;
-    private bool stateChangeHandlerSet = false;
 
     private void Awake()
     {
-        SetGameStateHandler();
-    }
-
-    private void Start()
-    {
-        StartGame();
-    }
-
-    private void SetGameStateHandler()
-    {
-        if (stateChangeHandlerSet) return;
-
-        GameManager.OnGameStateChanged += HandleGameStateChanged;
-        stateChangeHandlerSet = true;
+       GameManager.OnGameStateChanged += HandleGameStateChanged;
     }
 
     private void HandleGameStateChanged(GameState state)
     {
         if (state == GameState.SnakeGameStarted)
         {
-            StartGame();
+             SpawnSnakes();
         }
         else if (state == GameState.SnakeGameWon)
         {
@@ -48,14 +33,6 @@ public class SnakeGame : MonoBehaviour
         }
     }
 
-    private void StartGame()
-    {
-        if (!started)
-        {
-            started = true;
-            SpawnSnakes();
-        }
-    }
 
     private void EndGame()
     {
@@ -90,6 +67,7 @@ public class SnakeGame : MonoBehaviour
         snakeKills++;
         if (snakeKills >= requiredSnakeKills)
         {
+            GameManager.PlaySuccessSound();
             GameManager.SetGameState(GameState.SnakeGameWon);
         }
         else

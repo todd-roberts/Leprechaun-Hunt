@@ -120,7 +120,6 @@ public class DialogueManager : MonoBehaviour
         _currentCharacter.Idle();
         
         UpdateGameState();
-
     }
 
     private void UpdateGameState() {
