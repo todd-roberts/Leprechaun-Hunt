@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.UI;
 
 public class RainbowScanner : TrackedImageHandlerBase
 {
     [SerializeField]
     private GameObject rainbowPrefab;
+
+    [SerializeField]
+    private Button resetButton;
 
     private AudioSource _audio;
     [SerializeField]
@@ -13,15 +17,18 @@ public class RainbowScanner : TrackedImageHandlerBase
 
     private GameObject rainbowInstance;
 
-    private bool placed = false;
+    private ARTrackedImage currentTrackedImage;
+
+    private void Awake()
+    {
+        _audio = GetComponent<AudioSource>();
+        resetButton.gameObject.SetActive(false);
+        resetButton.onClick.AddListener(OnResetButtonClicked);
+    }
 
     public override IEnumerable<string> GetKeys()
     {
         yield return "rainbow"; 
-    }
-
-    private void Awake() {
-        _audio = GetComponent<AudioSource>();
     }
 
     public override void HandleTrackedImage(ARTrackedImage trackedImage)
@@ -38,29 +45,36 @@ public class RainbowScanner : TrackedImageHandlerBase
 
     private void ProcessRainbowImage(ARTrackedImage trackedImage)
     {
-        if (ImageIsCloseToCamera(trackedImage) && !placed)
+        if (ImageIsCloseToCamera(trackedImage))
         {
+            resetButton.gameObject.SetActive(true);
+            currentTrackedImage = trackedImage;
+
             if (rainbowInstance == null)
             {
                 _audio.PlayOneShot(spawnSound);
-                
+
                 rainbowInstance = Instantiate(
                     rainbowPrefab,
                     trackedImage.transform.position,
                     trackedImage.transform.rotation
                 );
+                rainbowInstance.SetActive(true);
             }
-            else
-            {
-                rainbowInstance.transform.position = trackedImage.transform.position;
-                rainbowInstance.transform.rotation = trackedImage.transform.rotation;
-            }
-
-            rainbowInstance.SetActive(true);
         }
-        else if (rainbowInstance != null)
+        else
         {
-            placed = true;
+            resetButton.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnResetButtonClicked()
+    {
+        if (rainbowInstance != null && currentTrackedImage != null)
+        {
+            _audio.PlayOneShot(spawnSound);
+            rainbowInstance.transform.position = currentTrackedImage.transform.position;
+            rainbowInstance.transform.rotation = currentTrackedImage.transform.rotation;
         }
     }
 }

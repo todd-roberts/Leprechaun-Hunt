@@ -1,7 +1,8 @@
-using UnityEngine;
-using UnityEngine.XR.ARFoundation;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.VFX;
+using UnityEngine.XR.ARFoundation;
 
 public class CharacterSpawner : TrackedImageHandlerBase
 {
@@ -18,11 +19,19 @@ public class CharacterSpawner : TrackedImageHandlerBase
     [SerializeField]
     private AudioClip _poofSound;
 
+    [SerializeField]
+    private Button resetButton;
+
+    private CharacterRig currentCharacterRig;
+    private ARTrackedImage currentTrackedImage;
+
     private void Awake()
     {
         _audio = GetComponent<AudioSource>();
         PopulateCharacterInstances();
         _poofVFX.enabled = false;
+        resetButton.gameObject.SetActive(false);
+        resetButton.onClick.AddListener(OnResetButtonClicked);
     }
 
     private void PopulateCharacterInstances()
@@ -46,23 +55,40 @@ public class CharacterSpawner : TrackedImageHandlerBase
 
     public override void HandleTrackedImage(ARTrackedImage trackedImage)
     {
-        if (!characterRigInstances.TryGetValue(trackedImage.referenceImage.name, out CharacterRig characterRig))
+        if (
+            !characterRigInstances.TryGetValue(
+                trackedImage.referenceImage.name,
+                out CharacterRig characterRig
+            )
+        )
         {
             // If the tracked image does not correspond to a character, do nothing
             return;
         }
 
+        if (!ImageIsCloseToCamera(trackedImage))
+        {
+            resetButton.gameObject.SetActive(false);
+            return;
+        }
+
+        resetButton.gameObject.SetActive(true);
+        currentCharacterRig = characterRig;
+        currentTrackedImage = trackedImage;
+
         if (!characterRig.gameObject.activeSelf && !characterRig.CharacterDetached())
         {
-            characterRig.transform.position = trackedImage.transform.position;
-            characterRig.transform.rotation =
-                trackedImage.transform.rotation * Quaternion.Euler(-90, 0, 180);
-            if (ImageIsCloseToCamera(trackedImage))
-            {
-                Poof(characterRig.transform.position);
-                characterRig.gameObject.SetActive(true);
-            }
+            Poof(characterRig.transform.position);
+            SnapRigToImage(trackedImage, characterRig);
+            characterRig.gameObject.SetActive(true);
         }
+    }
+
+    private void SnapRigToImage(ARTrackedImage trackedImage, CharacterRig characterRig)
+    {
+        characterRig.transform.position = trackedImage.transform.position;
+        characterRig.transform.rotation =
+            trackedImage.transform.rotation * Quaternion.Euler(-90, 0, 180);
     }
 
     public void Poof(Vector3 where)
@@ -71,6 +97,14 @@ public class CharacterSpawner : TrackedImageHandlerBase
         _poofVFX.transform.position = where;
         _audio.PlayOneShot(_poofSound);
         _poofVFX.Play();
+    }
+
+    private void OnResetButtonClicked()
+    {
+        if (currentCharacterRig != null && currentTrackedImage != null)
+        {
+            SnapRigToImage(currentTrackedImage, currentCharacterRig);
+        }
     }
 }
 
