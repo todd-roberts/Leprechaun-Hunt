@@ -640,6 +640,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: rabbit_2
       text: Hiya, Carl! Wish I had time to chat, but I've got a nasty problem to
         deal with.
@@ -657,6 +658,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: rabbit_3
       text: It's these blasted snakes. They're crawling all over the walls. The last
         one just about got one of my babes here.
@@ -674,6 +676,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: rabbit_4
       text: You want...my foot? I need these feet. Both of them. How else am I supposed
         to kick snakes?
@@ -691,6 +694,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: rabbit_5
       text: If you want me to hand over my foot, it's going to cost you an arm and
         a leg.
@@ -708,6 +712,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: rabbit_6
       text: 'I''ll tell you what: You give enough of these snakes a good whack, and
         I''ll give it serious consideration.'
@@ -725,6 +730,7 @@ MonoBehaviour:
       shouldProgressGameState: 1
       progressToGameState: 4
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 4
     dialogues:
     - key: rabbit_7
@@ -744,6 +750,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 5
     dialogues:
     - key: rabbit_8
@@ -763,6 +770,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: rabbit_9
       text: As agreed upon, I present you with my foot.
       audioClip: {fileID: 8300000, guid: c09f932c5b1e1ea40a1f3744aa1e5cd0, type: 3}
@@ -779,6 +787,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 21300000, guid: 6d358c0f97c5b15488c0f79c8b93b82e, type: 3}
     - key: rabbit_10
       text: 'Oh that old thing? It''s just a prosthetic. Lost my real foot when I
         still a baby. A snake ate it. '
@@ -796,6 +805,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: rabbit_11
       text: I hope it's OK it's not a real foot?
       audioClip: {fileID: 8300000, guid: 2535c72841aac16438c2178e5caf798a, type: 3}
@@ -812,6 +822,7 @@ MonoBehaviour:
       shouldProgressGameState: 1
       progressToGameState: 6
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 6
     dialogues:
     - key: rabbit_12
@@ -831,6 +842,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 7
     dialogues:
     - key: rabbit_12
@@ -850,6 +862,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 8
     dialogues:
     - key: rabbit_12
@@ -869,6 +882,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 9
     dialogues:
     - key: rabbit_12
@@ -888,6 +902,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 10
     dialogues:
     - key: rabbit_12
@@ -907,6 +922,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   leftBabyRabbit: {fileID: 6570221123068473310}
   rightBabyRabbit: {fileID: 4890830595489553635}
 --- !u!1 &5934268703567648858

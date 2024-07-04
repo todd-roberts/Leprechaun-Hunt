@@ -139,6 +139,7 @@ public class CharacterRig : MonoBehaviour
     public void Despawn()
     {
         _characterSpawner.Poof(transform.position);
+        _characterSpawner.ToggleOffResetButton();
         _doorIsOpen = false;
         _door.transform.localRotation = Quaternion.identity;
 

@@ -29,4 +29,6 @@ public class DialogueEntry
     public GameState progressToGameState;
 
     public bool isTrigger;
+
+    public Sprite dialogueImage;  // Add this line
 }

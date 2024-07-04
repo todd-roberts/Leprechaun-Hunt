@@ -20,11 +20,15 @@ public class DialogueUI : MonoBehaviour
     [SerializeField]
     private Button choiceButton2;
 
+    [SerializeField]
+    private Image dialogueImage; // Add this line
+
     private bool _isTextComplete;
 
     private void Awake()
     {
         HideButtons();
+        dialogueImage.gameObject.SetActive(false); // Ensure the image is hidden initially
     }
 
     private void HideButtons()
@@ -36,8 +40,15 @@ public class DialogueUI : MonoBehaviour
     public void UpdateDialogueText(string speakerName, DialogueEntry dialogueEntry)
     {
         HideButtons();
+        dialogueImage.gameObject.SetActive(false); // Hide the image initially
 
         speakerNameText.text = speakerName;
+
+        if (dialogueEntry.dialogueImage != null)
+        {
+            dialogueImage.sprite = dialogueEntry.dialogueImage;
+            dialogueImage.gameObject.SetActive(true); // Show the image if it exists
+        }
 
         StartCoroutine(TypeOutText(dialogueEntry));
     }

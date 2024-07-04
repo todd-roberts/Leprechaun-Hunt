@@ -78,9 +78,9 @@ public class CharacterSpawner : TrackedImageHandlerBase
 
         if (!characterRig.gameObject.activeSelf && !characterRig.CharacterDetached())
         {
-            Poof(characterRig.transform.position);
-            SnapRigToImage(trackedImage, characterRig);
             characterRig.gameObject.SetActive(true);
+            SnapRigToImage(trackedImage, characterRig);
+            Poof(characterRig.transform.position);
         }
     }
 
@@ -106,6 +106,8 @@ public class CharacterSpawner : TrackedImageHandlerBase
             SnapRigToImage(currentTrackedImage, currentCharacterRig);
         }
     }
+
+    public void ToggleOffResetButton() => resetButton.gameObject.SetActive(false);
 }
 
 [System.Serializable]

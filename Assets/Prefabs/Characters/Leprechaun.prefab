@@ -260,6 +260,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_2
       text: I suppose that's to be expected given I live deep in the forest and do
         nothing but make shoes.
@@ -277,6 +278,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_3
       text: Let's get a good look at you.
       audioClip: {fileID: 8300000, guid: 9563277431c9a564b8f63f0eb75ef41b, type: 3}
@@ -293,6 +295,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_4
       text: You're very big and very ugly. Definitely human. But also quite small
         for someone so big.
@@ -310,6 +313,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_5
       text: If I had to guess, I'd guess your name was...
       audioClip: {fileID: 8300000, guid: b71bfcd5548df1b4690f010f51d1c7c2, type: 3}
@@ -326,6 +330,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_6
       text: Carl. You're Carl Lewis Roberts. Carl Lewis Roberts of Conrow Drive in
         Manhattan, Kansas. Is that about right?
@@ -343,6 +348,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_7_a
       text: What a lucky guess! I was torn between that and Captain Underpants. But
         I decided you weren't handsome enough to be Captain Underpants.
@@ -360,6 +366,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_7_b
       text: Don't lie to me, me boy! I'll turn you into a newt faster than you can
         say "She sells shamrock shakes by the seashore."
@@ -377,6 +384,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_8
       text: But let me get an even closer look at you. Come closer. Close enough
         that I may peer into your very soul!
@@ -394,6 +402,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_9
       text: I knew it. You're looking for treasure. Shiny, golden, splendid treasure!
       audioClip: {fileID: 8300000, guid: 875e6d904cfa74d4b8177d3d8ba8adb2, type: 3}
@@ -410,6 +419,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_10
       text: It just so happens I have some golden coins to spare. A whole pot of
         'em!
@@ -427,6 +437,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_11
       text: I'll even tell you right where they are. No riddles, puzzles, or games
         from me. Everything above board.
@@ -444,6 +455,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_12
       text: I've hidden the pot of gold at the end of a magnificent rainbow. There
         is a small catch though...
@@ -461,6 +473,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_13
       text: For a human to see the treasure, they must be the luckiest person in
         the world.
@@ -478,6 +491,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_14
       text: To gauge your luck, I'll ask you a series of questions.
       audioClip: {fileID: 8300000, guid: dac6b878c088d244e8f0f23828d0761b, type: 3}
@@ -494,6 +508,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_15
       text: Have you won the lottery a single time in your entire life?
       audioClip: {fileID: 8300000, guid: a8115a3b72740c040adb98b9a1727883, type: 3}
@@ -510,6 +525,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_16
       text: Do you open umbrellas indoors?
       audioClip: {fileID: 8300000, guid: f321c2d393686ca42a8fe285f934fd33, type: 3}
@@ -526,6 +542,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_17
       text: 'Last question: Which number is greater, 7 or 13?'
       audioClip: {fileID: 8300000, guid: 2805858a775adec4ea967a412d88dff0, type: 3}
@@ -542,6 +559,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_18_a
       text: I'm sorry... Not lucky enough. You won the lottery a single time in your
         life. The luckiest person in the world would have won it more than once.
@@ -559,6 +577,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_18_b
       text: Sorry... but the luckiest person in the world would have at least GUESSED
         correctly. 13 is clearly greater than 7. By 6 whole numbers!
@@ -576,6 +595,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_18_c
       text: No... I'm afraid 7 is greater than 13. 7 is the luckiest number there
         is, and 13 is a terrible omen. Very misfortunate answer.
@@ -593,6 +613,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_19
       text: Sadly, it does indeed appear that you are NOT the luckiest person in
         the world. Or even the 1 millionth luckiest...
@@ -610,6 +631,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_20
       text: But perhaps there is something we can do to improve your fortune... Why
         yes! I know exactly what we can do.
@@ -627,6 +649,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_21
       text: You must find the three lucky trinkets. Legend says that three items
         bring extraordinary luck to their owners. The three items are...
@@ -644,6 +667,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_22
       text: A FOUR leaf clover! It must have four leaves. Three leaves is just a
         piece of rubbish.
@@ -661,6 +685,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 21300000, guid: 7d0d2289bc086634e8fc374014eb1f88, type: 3}
     - key: leprechaun_23
       text: A rabbit's foot. Not the whole rabbit, mind you. Just the foot. Good
         luck convincing a rabbit to give you one!
@@ -678,6 +703,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 21300000, guid: 6d358c0f97c5b15488c0f79c8b93b82e, type: 3}
     - key: leprechaun_24
       text: And last but certainly not least, a metal horse shoe. Now that I think
         about it, luck has got a lot to do with feet and shoes.
@@ -695,6 +721,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 21300000, guid: 2e8e3dba6628362438c61eceec768f15, type: 3}
     - key: leprechaun_25
       text: So that's it. Bring me the three lucky trinkets, and I'll use their magic
         to grant you SECRET RAINBOW VISION.
@@ -712,6 +739,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_26
       text: Start by finding us that FOUR leaf clover. You can look high and low
         for it, but low is probably better.
@@ -729,6 +757,7 @@ MonoBehaviour:
       shouldProgressGameState: 1
       progressToGameState: 1
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 1
     dialogues:
     - key: leprechaun_27
@@ -747,6 +776,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 2
     dialogues:
     - key: leprechaun_28
@@ -765,6 +795,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_29
       text: 'Now find a rabbit''s foot. Here''s a hint: You''ll typically find one
         at the end of a rabbit''s leg.'
@@ -782,6 +813,7 @@ MonoBehaviour:
       shouldProgressGameState: 1
       progressToGameState: 3
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 3
     dialogues:
     - key: leprechaun_30
@@ -801,6 +833,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 4
     dialogues:
     - key: leprechaun_30
@@ -820,6 +853,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 5
     dialogues:
     - key: leprechaun_30
@@ -839,6 +873,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 6
     dialogues:
     - key: leprechaun_31
@@ -858,6 +893,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_32
       text: Now I demand a metal horseshoe. It can silver, wrought iron, or even
         aluminum for all I care.
@@ -875,6 +911,7 @@ MonoBehaviour:
       shouldProgressGameState: 1
       progressToGameState: 7
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 7
     dialogues:
     - key: leprechaun_33
@@ -893,6 +930,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_34
       text: I must have the trinkets! I need them so that I can become an all-powerful
         wiz-- I mean... so that you can have SECRET RAINBOW VISION.
@@ -910,6 +948,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 8
     dialogues:
     - key: leprechaun_35
@@ -929,6 +968,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_36
       text: Such... POWER! I can feel the magic coursing through me!
       audioClip: {fileID: 8300000, guid: 8129d53ff24d85545a0fbe18d2867221, type: 3}
@@ -945,6 +985,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 1
+      dialogueImage: {fileID: 0}
     - key: leprechaun_37
       text: I am now a powerful wizard who can teleport anywhere in an instant. No
         human will ever catch me again.
@@ -962,6 +1003,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_38
       text: Ohhh, you thought I was going to give *you* powers. Hahaha. No! I fed
         you a load of bologna.
@@ -979,6 +1021,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_39
       text: The only way to see the pot of gold at the end of the rainbow is to catch
         a leprechaun. Not help him, catch him.
@@ -996,6 +1039,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_40
       text: But now you can't. I was fast before, but with my new teleportation powers,
         now I'm utterly uncatchable!
@@ -1013,6 +1057,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_41
       text: Bye bye now! I'd wish you 'Good luck' but there isn't any more luck to
         go around. Mwahaha!
@@ -1030,6 +1075,7 @@ MonoBehaviour:
       shouldProgressGameState: 1
       progressToGameState: 9
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   - gameState: 10
     dialogues:
     - key: leprechaun_42
@@ -1048,6 +1094,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_43
       text: I calculated that it would take you a BILLION years to catch me. And
         that's if you were lucky. And you're not lucky!
@@ -1065,6 +1112,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_44
       text: People always say 'It's better to be lucky than good.' Clearly, they
         are wrong. You are good at catching leprechauns.
@@ -1082,6 +1130,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 0
+      dialogueImage: {fileID: 0}
     - key: leprechaun_45
       text: Very well--I have no choice. Close your eyes little lad.
       audioClip: {fileID: 8300000, guid: d1bf8bba11195984dbddb83b5e02f316, type: 3}
@@ -1098,6 +1147,7 @@ MonoBehaviour:
       shouldProgressGameState: 0
       progressToGameState: 0
       isTrigger: 1
+      dialogueImage: {fileID: 0}
     - key: leprechaun_46
       text: 'Well, congratulations. You have SECRET RAINBOW VISION now. Find the
         end of the rainbow. Find the gold. It''s as easy as that. '
@@ -1115,6 +1165,7 @@ MonoBehaviour:
       shouldProgressGameState: 1
       progressToGameState: 11
       isTrigger: 0
+      dialogueImage: {fileID: 0}
   hoverSpeed: 3
   hoverHeight: 0.1
   teleportDelay: 15
