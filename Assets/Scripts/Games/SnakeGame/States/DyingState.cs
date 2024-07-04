@@ -4,6 +4,6 @@ public class DyingState : SnakeState
     {
         _snake.PlayDeathSound();
         _snake.PlayAnimation("Death");
-         _snake.NotifySnakeKilled();
+        _snake.NotifySnakeKilled();
     }
 }

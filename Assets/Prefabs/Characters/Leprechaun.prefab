@@ -1117,9 +1117,9 @@ MonoBehaviour:
       isTrigger: 0
   hoverSpeed: 3
   hoverHeight: 0.1
-  teleportDelay: 10
-  teleportDistance: 1
-  requiredTouches: 5
+  teleportDelay: 15
+  teleportDistance: 1.5
+  requiredTouches: 3
   touchDistance: 0.5
   magicOrb: {fileID: 6660568049285293006}
   touchCounter: 0

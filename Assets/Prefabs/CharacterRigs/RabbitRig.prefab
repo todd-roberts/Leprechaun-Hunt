@@ -609,8 +609,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snakePrefab: {fileID: 657680660009767545, guid: 5cb6c9b08d944ce488733ed40b98378a,
     type: 3}
-  snakesPerPlane: 5
-  requiredSnakeKills: 25
+  snakesPerPlane: 3
+  requiredSnakeKills: 15
   wallPlanes:
   - {fileID: 5060437418243264480}
   - {fileID: 671419190080765190}
