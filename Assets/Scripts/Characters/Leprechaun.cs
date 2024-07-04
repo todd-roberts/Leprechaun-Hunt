@@ -147,16 +147,19 @@ public class Leprechaun : Character
         _audio.PlayOneShot(touchedSound);
     }
 
-    public void MoveToRelativePosition(Vector3 relativePosition)
+      public void MoveToRelativePosition(Vector3 relativePosition)
     {
+        Vector3 cameraRight = Camera.main.transform.right;
+        cameraRight.y = 0; // Keep the right direction horizontal
+        cameraRight.Normalize();
+
         Vector3 cameraForward = Camera.main.transform.forward;
         cameraForward.y = 0; // Keep the forward direction horizontal
-
-        Vector3 right = Camera.main.transform.right;
-        right.y = 0; // Keep the right direction horizontal
+        cameraForward.Normalize();
 
         Vector3 newPosition = Camera.main.transform.position +
-                              (right * relativePosition.x + cameraForward * relativePosition.z) * teleportDistance;
+                              (cameraRight * relativePosition.x + cameraForward * relativePosition.z) * teleportDistance;
+
         newPosition.y = Camera.main.transform.position.y;
 
         transform.position = newPosition;
@@ -166,18 +169,6 @@ public class Leprechaun : Character
     {
         float distance = Vector3.Distance(transform.position, Camera.main.transform.position);
         return distance <= touchDistance;
-    }
-
-    public Vector3 GetRandomRelativePosition(Vector3[] relativePositions, ref int lastPositionIndex)
-    {
-        int newPositionIndex;
-        do
-        {
-            newPositionIndex = Random.Range(0, relativePositions.Length);
-        } while (newPositionIndex == lastPositionIndex);
-
-        lastPositionIndex = newPositionIndex;
-        return relativePositions[newPositionIndex];
     }
 
     public void SetTalking(bool isTalking)

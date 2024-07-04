@@ -6,10 +6,10 @@ public class TrinketUIManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject fourLeafCloverImage;
-    
+
     [SerializeField]
     private GameObject rabbitsFootImage;
-    
+
     [SerializeField]
     private GameObject horseshoeImage;
 
@@ -27,7 +27,10 @@ public class TrinketUIManager : MonoBehaviour
         ToggleAllTrinkets(false);
 
         GameManager.OnGameStateChanged += HandleGameStateChanged;
+    }
 
+    private void Start()
+    {
         GameManager.RegisterDialogueCallback("leprechaun_35", ToggleOffAllTrinkets);
     }
 
@@ -36,7 +39,8 @@ public class TrinketUIManager : MonoBehaviour
         GameManager.OnGameStateChanged -= HandleGameStateChanged;
     }
 
-    public IEnumerator ToggleOffAllTrinkets() {
+    public IEnumerator ToggleOffAllTrinkets()
+    {
         ToggleAllTrinkets(false);
         yield return null;
     }

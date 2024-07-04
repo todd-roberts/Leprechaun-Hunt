@@ -2073,7 +2073,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftArrow: {fileID: 1947910339}
   rightArrow: {fileID: 222278119}
-  leprechaun: {fileID: 0}
 --- !u!114 &2132021170 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2953295812574511071, guid: 3ace82aa4b637c34bbef47272ce7c71d,
@@ -2213,7 +2212,7 @@ PrefabInstance:
     - target: {fileID: 7613175140223346765, guid: 3ace82aa4b637c34bbef47272ce7c71d,
         type: 3}
       propertyPath: allowFastForward
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8200829498403445545, guid: 3ace82aa4b637c34bbef47272ce7c71d,
         type: 3}

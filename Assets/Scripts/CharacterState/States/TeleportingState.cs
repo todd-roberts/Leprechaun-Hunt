@@ -4,29 +4,20 @@ using UnityEngine;
 public enum TeleportationPosition
 {
     LEFT,
-    RIGHT,
-    BEHIND
+    RIGHT
 }
 
 public class TeleportingState : LeprechaunState
 {
     private float scaleDownDuration = 0.2f;
     private float scaleDownTimer = 0f;
-    private Dictionary<TeleportationPosition, Vector3> _teleportPositions = new Dictionary<
-        TeleportationPosition,
-        Vector3
-    >
+    private Dictionary<TeleportationPosition, Vector3> _teleportPositions = new Dictionary<TeleportationPosition, Vector3>
     {
         { TeleportationPosition.LEFT, new Vector3(-1, 0, 0) },
-        { TeleportationPosition.RIGHT, new Vector3(1, 0, 0) },
-        { TeleportationPosition.BEHIND, new Vector3(0, 0, -1) }
+        { TeleportationPosition.RIGHT, new Vector3(1, 0, 0) }
     };
 
     private Vector3 originalScale;
-   
-    private bool _firstTeleportation = true;
-
-    private TeleportationPosition _teleportationPosition = TeleportationPosition.BEHIND;
 
     public override void Enter()
     {
@@ -54,39 +45,8 @@ public class TeleportingState : LeprechaunState
 
     private Vector3 GetNewPosition()
     {
-        if (_firstTeleportation)
-        {
-            _firstTeleportation = false;
-        }
-        else
-        {
-            if (_teleportationPosition == TeleportationPosition.BEHIND)
-            {
-                _teleportationPosition =
-                    Random.Range(0f, 1) > 0.5f
-                        ? TeleportationPosition.LEFT
-                        : TeleportationPosition.RIGHT;
-            }
-            else if (_teleportationPosition == TeleportationPosition.LEFT)
-            {
-                _teleportationPosition = Random.Range(0f, 1) > 0.5f
-                    ? TeleportationPosition.RIGHT
-                    : TeleportationPosition.BEHIND;
-            }
-            else
-            {
-                _teleportationPosition =
-                    Random.Range(0f, 1) > 0.5f
-                        ? TeleportationPosition.LEFT
-                        : TeleportationPosition.BEHIND;
-            }
-        }
-
-        return GetTeleportPosition();
-    }
-
-    private Vector3 GetTeleportPosition()
-    {
-        return _teleportPositions[_teleportationPosition];
+        // Randomly select LEFT or RIGHT
+        TeleportationPosition newPosition = Random.Range(0, 2) == 0 ? TeleportationPosition.LEFT : TeleportationPosition.RIGHT;
+        return _teleportPositions[newPosition];
     }
 }

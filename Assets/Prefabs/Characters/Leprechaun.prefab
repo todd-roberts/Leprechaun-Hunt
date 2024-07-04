@@ -967,7 +967,7 @@ MonoBehaviour:
         nextDialogueKey: 
       shouldProgressGameState: 0
       progressToGameState: 0
-      isTrigger: 0
+      isTrigger: 1
       dialogueImage: {fileID: 0}
     - key: leprechaun_36
       text: Such... POWER! I can feel the magic coursing through me!
@@ -1170,7 +1170,7 @@ MonoBehaviour:
   hoverHeight: 0.1
   teleportDelay: 15
   teleportDistance: 1.5
-  requiredTouches: 3
+  requiredTouches: 5
   touchDistance: 0.5
   magicOrb: {fileID: 6660568049285293006}
   touchCounter: 0

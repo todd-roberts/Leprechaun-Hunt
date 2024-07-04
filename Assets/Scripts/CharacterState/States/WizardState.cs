@@ -20,7 +20,7 @@ public class WizardState : LeprechaunState
         }
 
         FaceCamera();
-        _leprechaun.BobUpAndDown();
+        //_leprechaun.BobUpAndDown();
     }
 
     public override void OnPointerDown()

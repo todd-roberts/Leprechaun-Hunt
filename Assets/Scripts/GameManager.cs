@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public static event Action<GameState> OnGameStateChanged;
 
-    private Dictionary<string, Func<IEnumerator>> _dialogueCallbacks;
+    private Dictionary<string, Func<IEnumerator>> _dialogueCallbacks = new();
 
     public GameObject rainbowVisionPanel;
 
@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
-            _dialogueCallbacks = new Dictionary<string, Func<IEnumerator>>();
             _audio = GetComponent<AudioSource>();
         }
         else
